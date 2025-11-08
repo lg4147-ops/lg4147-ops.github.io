@@ -38,31 +38,43 @@
 
 <script>
 window.addEventListener('load', function () {
-  try {
-    const gui = document.querySelector('.dg');
-    if (gui) gui.style.display = 'none';
+  console.log("Page loaded, checking Canvas...");
+  
+  const canvas = document.getElementById('fluid-canvas');
+  if (!canvas) {
+    console.error("Canvas not found!");
+    return;
+  }
+  
+  console.log("Canvas found:", canvas);
+  
+  let attempts = 0;
+  const maxAttempts = 50;
+  
+  const checkConfig = setInterval(function() {
+    attempts++;
+    console.log(`Checking config... attempt ${attempts}`);
     
     if (typeof config !== 'undefined') {
+      console.log("Config found!");
+      clearInterval(checkConfig);
+      
+      const gui = document.querySelector('.dg');
+      if (gui) gui.style.display = 'none';
+      
       config.BACK_COLOR = { r: 245, g: 245, b: 250 };
       config.COLORFUL = true;
       config.SHADING = true;
       
-      if (typeof localStorage !== 'undefined') {
-        try {
-          localStorage.removeItem('config');
-        } catch(e) {
-
-        }
-      }
+      console.log("✅ WebGL Fluid Simulation configured!");
+    } else if (attempts >= maxAttempts) {
+      console.error("❌ Config object not found after " + maxAttempts + " attempts");
+      console.error("WebGL script may not have loaded correctly");
+      clearInterval(checkConfig);
     }
-    
-    console.log("WebGL Fluid Simulation loaded!");
-  } catch (e) {
-    console.error("Fluid simulation initialization failed:", e);
-  }
+  }, 100); // 每100ms检查一次
 });
 </script>
-
 
     
   </body>
