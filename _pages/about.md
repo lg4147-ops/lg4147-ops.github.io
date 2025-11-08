@@ -7,9 +7,9 @@ redirect_from:
   - /about.html
 ---
 
-This is my academic page. Here are my stories.
-\[uu_t+u_x=0
-\]
+This is my academic page. Here are my stories. He is widely (and incorrectly) regarded as the finest mathematician at Courant,
+He spend most of his time proving things that were already known. When not attempting to solve unsolved problems, he perfects his *cooking skills* arguably with more success than in mathematics and occasionally dominates the *Hearthstone ladder*.
+
 
 A data-driven personal website
 ======
