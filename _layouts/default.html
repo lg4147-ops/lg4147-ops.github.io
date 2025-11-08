@@ -40,29 +40,17 @@ layout: compress
 
 <script>
 window.addEventListener('load', function () {
-  if (typeof startGUI === 'function') {
+  try {
     const gui = document.querySelector('.dg');
     if (gui) gui.style.display = 'none';
-  }
 
-  try {
-    if (typeof pointerPrototype === 'undefined') return;
-    config = {
-      SIM_RESOLUTION: 128,
-      DYE_RESOLUTION: 512,
-      DENSITY_DISSIPATION: 1,
-      VELOCITY_DISSIPATION: 0.98,
-      PRESSURE_ITERATIONS: 20,
-      CURL: 30,
-      SPLAT_RADIUS: 0.005,
-      SPLAT_FORCE: 6000,
-      SHADING: true,
-      COLORFUL: true,
-      PAUSED: false,
-      BACK_COLOR: { r: 250, g: 250, b: 250 },
-      TRANSPARENT: true
-    };
-    console.log("✅ WebGL Fluid background initialized!");
+    if (typeof config !== 'undefined') {
+      config.BACK_COLOR = { r: 245, g: 245, b: 250 };  // Courant 灰
+      config.COLORFUL = true;
+      config.SHADING = true;
+    }
+
+    console.log("✅ WebGL Fluid Simulation loaded!");
   } catch (e) {
     console.error("❌ Fluid simulation initialization failed:", e);
   }
