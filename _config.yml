@@ -26,11 +26,7 @@ author:
   avatar           : "profile.png"
   name             : "Liyan Gong"
   pronouns         : # example: "he/him"  
-  bio              : "Master’s Student in Applied Mathematics, NYU Courant Institute.
-Widely (and incorrectly) regarded as the finest mathematician at Courant,
-Liyan spends most of his time proving things that were already known.
-When not attempting to solve unsolved problems, he perfects his cooking skills—arguably with more success than in mathematics—
-and occasionally dominates the Hearthstone ladder."
+  bio              : "Master’s Student in Applied Mathematics, NYU Courant Institute."
 
   location         : "Azeroth"
   employer         : "New York University"
