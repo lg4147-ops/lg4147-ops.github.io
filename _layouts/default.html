@@ -41,13 +41,21 @@ window.addEventListener('load', function () {
   try {
     const gui = document.querySelector('.dg');
     if (gui) gui.style.display = 'none';
-
+    
     if (typeof config !== 'undefined') {
-      config.BACK_COLOR = { r: 245, g: 245, b: 250 };  // Light gray background
+      config.BACK_COLOR = { r: 245, g: 245, b: 250 };
       config.COLORFUL = true;
       config.SHADING = true;
-    }
+      
+      if (typeof localStorage !== 'undefined') {
+        try {
+          localStorage.removeItem('config');
+        } catch(e) {
 
+        }
+      }
+    }
+    
     console.log("WebGL Fluid Simulation loaded!");
   } catch (e) {
     console.error("Fluid simulation initialization failed:", e);
