@@ -36,7 +36,7 @@ author:
   # Academic websites
   academia         : # URL
   arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    : "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+  googlescholar    : # URL
   inspire-hep      : # URL
   impactstory      : # URL
   orcid            : "https://orcid.org/yourorcidurl"
@@ -65,6 +65,7 @@ author:
   instagram        : # Username
   lastfm           : # Username
   linkedin         : # Username
+  QQ               : "2280359810@qq.com"
   mastodon         : # URL
   medium           : # URL
   pinterest        : # Username
