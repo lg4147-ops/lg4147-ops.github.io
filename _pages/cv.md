@@ -11,21 +11,15 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* M.S. in Math, New York University, 2025-2027 (expected)
+* B.S. in Math, Sun Yat-sen University, 2021-2025
 
 Work experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* Fall 2025: Teaching Assistant
+  * New York University
+  * Supervisor: Professor Ralph Chikhany
 
 * Summer 2015: Research Assistant
   * GitHub University
@@ -34,7 +28,7 @@ Work experience
   
 Skills
 ======
-* Skill 1
+* Skill 1 Everything related to math!
 * Skill 2
   * Sub-skill 2.1
   * Sub-skill 2.2
