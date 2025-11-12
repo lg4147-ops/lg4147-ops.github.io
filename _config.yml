@@ -25,7 +25,7 @@ author:
   # Biographic information
   avatar           : "profile.png"
   name             : "Liyan Gong"
-  pronouns         : # example: "he/him"  
+  pronouns         : "he/him"  
   bio              : "Master’s Student in Applied Mathematics, NYU Courant Institute."
 
   location         : "Azeroth"
