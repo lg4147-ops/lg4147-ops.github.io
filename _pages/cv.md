@@ -29,11 +29,14 @@ Work experience
 Skills
 ======
 * Skill 1 Everything related to math!
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* Skill 2 : Programming languages
+  * Sub-skill 2.1 Python
+  * Sub-skill 2.2 Matlab
+  * Sub-skill 2.3 C++
+  * Sub-skill 2.4 SQL
+* Languages
+  * Chinese (native)
+  * English (proficient)
 
 Publications
 ======
