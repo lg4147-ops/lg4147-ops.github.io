@@ -1,14 +1,14 @@
 {
   "basics": {
-    "name": "Your Sidebar Name",
-    "email": "none@example.org",
+    "name": "Liyan Gong",
+    "email": "lg4147@nyu.edu",
     "phone": "",
-    "website": "https://academicpages.github.io",
-    "summary": "Currently employed at Red Brick University. Short biography for the left-hand sidebar",
+    "website": "https://lg4147-ops.github.io/",
+    "summary": "Math master in New York University",
     "location": {
       "address": "",
       "postalCode": "",
-      "city": "Earth",
+      "city": "New York",
       "countryCode": "US",
       "region": ""
     },
@@ -33,32 +33,23 @@
   "work": [],
   "education": [
     {
-      "institution": "GitHub University",
-      "area": "Ph.D in Version Control Theory",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2018",
+      "institution": "New York University",
+      "area": "M.S. in Math",
+      "studyType": "full-time",
+      "startDate": "2025",
+      "endDate": "2027",
       "gpa": null,
       "courses": []
     },
     {
-      "institution": "GitHub University",
-      "area": "M.S. in Jekyll",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2014",
+      "institution": "Sun Yat-sen University",
+      "area": "B.S. in math",
+      "studyType": "full-time",
+      "startDate": "2021",
+      "endDate": "2025",
       "gpa": null,
       "courses": []
     },
-    {
-      "institution": "GitHub University",
-      "area": "B.S. in GitHub",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2012",
-      "gpa": null,
-      "courses": []
-    }
   ],
   "skills": [],
   "languages": [],
