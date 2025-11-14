@@ -30,9 +30,8 @@ Work experience
 
 **Mathematics**
 - Applied & Computational Mathematics
-- Fluid Dynamics (Euler, Navier–Stokes, IB method)
+- Fluid Dynamics 
 - PDEs & Numerical Analysis
-- Stochastic Processes & Fokker–Planck
 - Information Theory
 
 **Programming**
