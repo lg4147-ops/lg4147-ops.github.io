@@ -1,13 +1,13 @@
 ---
 permalink: /
-title: "This the academic page for Liyan Gong"
+title: "So we beat on, boats against the current, borne back ceaselessly into the past"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-This is my academic page. Here are my stories. He is widely (and incorrectly) regarded as the finest mathematician at Courant,
+This is Liyan Gong. He is widely (and incorrectly) regarded as the finest mathematician at Courant,
 He spend most of his time proving things that were already known. When not attempting to solve unsolved problems, he perfects his *cooking skills* arguably with more success than in mathematics and occasionally dominates the *Hearthstone ladder*.
 
 
