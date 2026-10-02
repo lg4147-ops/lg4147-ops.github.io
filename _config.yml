@@ -190,6 +190,7 @@ exclude:
   - Rakefile
   - README
   - tmp
+  - talkmap
   - vendor
 keep_files:
   - .git
