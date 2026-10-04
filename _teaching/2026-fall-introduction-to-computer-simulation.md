@@ -6,7 +6,7 @@ permalink: /teaching/2026-fall-introduction-to-computer-simulation/
 date: 2026-09-01
 venue: "New York University"
 excerpt: "MATH-UA 144. Instructor: Professor Charles Peskin."
-citation: "Grader, MATH-UA 144, New York University, Fall 2026. Instructor: Professor Charles Peskin."
+teaching_summary: "Grader, MATH-UA 144, New York University, Fall 2026. Instructor: Professor Charles Peskin."
 share: false
 comments: false
 ---
