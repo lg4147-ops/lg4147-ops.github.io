@@ -15,4 +15,10 @@ My interests lie in computational applied mathematics, especially numerical meth
 
 I am currently working with Professor Charles Peskin on stochastic entrainment in biochemical and circadian oscillators, using stochastic simulation and numerical analysis.
 
+<p>
+  <a class="btn" href="{{ '/research/' | relative_url }}">Research</a>
+  <a class="btn" href="{{ '/teaching/' | relative_url }}">Teaching</a>
+  <a class="btn" href="{{ '/notes/' | relative_url }}">Notes &amp; Selected Coursework</a>
+</p>
+
 For more about my background, see my [CV]({{ '/cv/' | relative_url }}). I share personal notes and reflections in [Blog Posts]({{ '/year-archive/' | relative_url }}).

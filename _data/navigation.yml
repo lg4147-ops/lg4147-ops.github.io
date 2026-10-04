@@ -1,7 +1,13 @@
 # Main navigation. Add sections when they contain personal content.
 main:
+  - title: "Research"
+    url: /research/
+
   - title: "Teaching"
     url: /teaching/
+
+  - title: "Notes & Selected Coursework"
+    url: /notes/
 
   - title: "Portfolio"
     url: /portfolio/
