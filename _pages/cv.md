@@ -14,20 +14,7 @@ Education
 * M.S. in Math, New York University, 2025-2027 (expected)
 * B.S. in Math, Sun Yat-sen University, 2021-2025
 
-Work experience
-======
-
-* Fall 2025: Teaching Assistant
-  * New York University
-  * Supervisor: Professor Ralph Chikhany
-
 # Skills
-
-**Mathematics**
-- Applied & Computational Mathematics
-- Fluid Dynamics 
-- PDEs & Numerical Analysis
-- Information Theory
 
 **Programming**
 - Python
