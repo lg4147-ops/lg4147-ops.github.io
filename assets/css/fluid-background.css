@@ -1,0 +1,95 @@
+/* A quiet, local-only flow field behind the page. Content keeps its own colors. */
+:root {
+  --flow-bg: #f5f8fb;
+  --flow-wash: rgba(215, 230, 239, 0.42);
+  --flow-header-bg: rgba(241, 247, 250, 0.88);
+  --flow-header-border: rgba(112, 137, 156, 0.22);
+  --flow-header-shadow: 0 4px 18px rgba(62, 84, 104, 0.06);
+  --flow-menu-bg: #f5f8fb;
+}
+
+html[data-theme="dark"] {
+  --flow-bg: var(--global-bg-color, #292f36);
+  --flow-wash: rgba(100, 149, 173, 0.08);
+  --flow-header-bg: rgba(36, 44, 52, 0.9);
+  --flow-header-border: rgba(163, 184, 203, 0.2);
+  --flow-header-shadow: 0 4px 18px rgba(0, 0, 0, 0.16);
+  --flow-menu-bg: #292f36;
+}
+
+body {
+  /* Keep negative-z decoration above the body background, below all content. */
+  isolation: isolate;
+  background-color: var(--flow-bg);
+  /* The template reserves 9em for the footer, which is no longer shown. */
+  padding-bottom: 3rem;
+}
+
+/* A quiet frame for navigation, with no white blocks hiding the glass layer. */
+.masthead {
+  background: var(--flow-header-bg);
+  -webkit-backdrop-filter: blur(14px) saturate(110%);
+  backdrop-filter: blur(14px) saturate(110%);
+  box-shadow: var(--flow-header-shadow);
+}
+
+.masthead::after { background: var(--flow-header-border); }
+
+.masthead .greedy-nav,
+.masthead .masthead__menu-item {
+  background: transparent;
+}
+
+/* Keep overflow navigation readable at smaller widths and in dark mode. */
+.masthead .greedy-nav .hidden-links {
+  background: var(--flow-menu-bg);
+  border-color: var(--flow-header-border);
+  border-radius: 10px;
+  box-shadow: var(--flow-header-shadow);
+}
+
+.masthead .greedy-nav .hidden-links::before {
+  border-color: var(--flow-header-border) transparent;
+}
+
+.masthead .greedy-nav .hidden-links::after {
+  border-color: var(--flow-menu-bg) transparent;
+}
+
+#fluid-canvas {
+  position: fixed;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+  background: radial-gradient(ellipse at 95% 30%, var(--flow-wash), transparent 65%);
+  /* Quiet under the reading column; more visible in the open margins. */
+  -webkit-mask-image: linear-gradient(to right, #000, rgba(0, 0, 0, 0.32) 20%, rgba(0, 0, 0, 0.16) 32%, rgba(0, 0, 0, 0.16) 72%, #000 96%);
+  mask-image: linear-gradient(to right, #000, rgba(0, 0, 0, 0.32) 20%, rgba(0, 0, 0, 0.16) 32%, rgba(0, 0, 0, 0.16) 72%, #000 96%);
+}
+
+@media (max-width: 767px), (hover: none), (pointer: coarse) {
+  #fluid-canvas {
+    opacity: 0.5;
+    -webkit-mask-image: linear-gradient(to right, #000, rgba(0, 0, 0, 0.1) 15%, rgba(0, 0, 0, 0.1) 85%, #000);
+    mask-image: linear-gradient(to right, #000, rgba(0, 0, 0, 0.1) 15%, rgba(0, 0, 0, 0.1) 85%, #000);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #fluid-canvas { opacity: 0.55; }
+}
+
+@media print, (forced-colors: active) {
+  #fluid-canvas { display: none; }
+  body { background-color: var(--global-bg-color, #fff); }
+  .masthead {
+    background: var(--global-bg-color, #fff);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+}
