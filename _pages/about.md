@@ -19,10 +19,13 @@ I am currently working with Professor Charles Peskin on how periodic light chang
 
 Outside mathematics, I enjoy listening to music, playing guitar, reading, and playing Hearthstone. In 2025, I competed in the Americas playoffs twice, but did not advance on either occasion.
 
+View my [Photography]({{ '/portfolio/' | relative_url }}).
+
 <p>
   <a class="btn" href="{{ '/research/' | relative_url }}">Research</a>
   <a class="btn" href="{{ '/teaching/' | relative_url }}">Teaching</a>
-  <a class="btn" href="{{ '/notes/' | relative_url }}">Notes &amp; Selected Coursework</a>
+  <a class="btn" href="{{ '/notes/' | relative_url }}">Notes</a>
 </p>
 
-For more about my background, see my [CV]({{ '/cv/' | relative_url }}). I share personal notes and reflections in [Blog Posts]({{ '/year-archive/' | relative_url }}).
+For more about my background, see my [CV]({{ '/cv/' | relative_url }}). I share personal notes and reflections in [Blog]({{ '/year-archive/' | relative_url }}).
+

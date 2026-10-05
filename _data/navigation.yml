@@ -6,14 +6,11 @@ main:
   - title: "Teaching"
     url: /teaching/
 
-  - title: "Notes & Selected Coursework"
+  - title: "Notes"
     url: /notes/
-
-  - title: "Portfolio"
-    url: /portfolio/
-
-  - title: "Blog Posts"
-    url: /year-archive/
 
   - title: "CV"
     url: /cv/
+
+  - title: "Blog"
+    url: /year-archive/
