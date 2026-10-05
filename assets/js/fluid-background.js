@@ -21,6 +21,16 @@
   const pointerRadius = 150;
   const maxSteer = 0.42;
   const pointer = { x: 0, y: 0, targetX: 0, targetY: 0, strength: 0, active: false };
+  // Muted blue, teal, slate, violet and indigo keep the wave's quiet palette.
+  // Matching slots preserve each line's color family across theme changes.
+  const palettes = {
+    light: ['rgba(64, 122, 157, 0.42)', 'rgba(48, 134, 131, 0.40)',
+      'rgba(98, 125, 148, 0.40)', 'rgba(124, 111, 155, 0.38)',
+      'rgba(92, 125, 166, 0.40)'],
+    dark: ['rgba(139, 193, 222, 0.42)', 'rgba(130, 204, 189, 0.40)',
+      'rgba(169, 188, 206, 0.40)', 'rgba(188, 171, 217, 0.38)',
+      'rgba(154, 180, 224, 0.40)']
+  };
 
   let width = 1;
   let height = 1;
@@ -30,7 +40,7 @@
   let lastUpdate = 0;
   let dirty = true;
   let suspended = false;
-  let strokeColor;
+  let strokeColors;
 
   function staticMode() {
     return reducedMotion.matches || compactScreen.matches || !finePointer.matches;
@@ -41,8 +51,7 @@
   }
 
   function updatePalette() {
-    strokeColor = root.getAttribute('data-theme') === 'dark'
-      ? 'rgba(151, 193, 212, 0.38)' : 'rgba(77, 124, 153, 0.38)';
+    strokeColors = root.getAttribute('data-theme') === 'dark' ? palettes.dark : palettes.light;
   }
 
   function sample(line) {
@@ -61,9 +70,12 @@
     line.life = 5.5 + Math.random() * 3.5;
     line.age = prime ? 1 + Math.random() * (line.life - 2) : -Math.random() * 0.65;
     line.alpha = 0.65 + Math.random() * 0.35;
-    line.width = 0.7 + Math.random() * 0.4;
+    line.width = 1.7 + Math.random() * 0.8;
     line.trailLength = 22 + Math.floor(Math.random() * (maxTrail - 21));
     line.side = Math.random() < 0.5 ? -1 : 1;
+    // Pick a new color only after fading out, then fade it in with the next
+    // emission. No per-frame color changes or flashing; static modes stay still.
+    line.colorIndex = Math.floor(Math.random() * palettes.light.length);
     line.steer = 0;
     line.sampleTime = 0;
     line.next = 0;
@@ -164,12 +176,12 @@
     ctx.clearRect(0, 0, width, height);
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
-    ctx.strokeStyle = strokeColor;
     lines.forEach(function (line) {
       if (line.age < 0) return;
       const fade = Math.min(1, line.age / 0.8, (line.life - line.age) / 1.1);
       const oldest = (line.next - line.count + line.trailLength) % line.trailLength;
       ctx.lineWidth = line.width;
+      ctx.strokeStyle = strokeColors[line.colorIndex];
       // Small groups taper the short tail without allocating gradients or
       // new point arrays every frame. At most 32 lines and 36 points per line.
       for (let start = 0; start < line.count; start += 4) {
