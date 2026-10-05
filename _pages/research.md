@@ -30,7 +30,7 @@ We study how periodic light changes protein fluctuations in a stochastic circadi
 
 **Physics-informed neural networks for the semiclassical Schrödinger equation**
 
-My bachelor's thesis studied physics-informed neural networks for the semiclassical Schrödinger equation. Alongside this work, I learned numerical PDEs and numerical analysis through my advisor's seminar.
+Throughout my undergraduate studies, I studied numerical analysis and numerical partial differential equations under Professor Lihui Chai and attended his weekly seminar. This work culminated in my bachelor's thesis, “Physics-informed neural networks for the semiclassical Schrödinger equation.”
 
 ## Text-to-video generation
 
