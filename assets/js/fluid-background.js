@@ -1,4 +1,4 @@
-/* Decorative angular polylines only: no dependencies, requests, storage, or telemetry. */
+/* Decorative emitting lines only: no dependencies, requests, storage, or telemetry. */
 (function () {
   'use strict';
 
@@ -15,19 +15,22 @@
   const root = document.documentElement;
   const frameInterval = 1000 / 30;
   const pixelBudget = 2800000;
-  const cycle = Math.PI * 200;
+  const maxLines = 32;
+  const maxTrail = 36;
+  const sampleInterval = 0.05;
+  const pointerRadius = 150;
+  const maxSteer = 0.42;
   const pointer = { x: 0, y: 0, targetX: 0, targetY: 0, strength: 0, active: false };
 
   let width = 1;
   let height = 1;
-  let paths = [];
-  let phase = 0;
+  let lines = [];
   let frameId = 0;
   let lastFrame = 0;
+  let lastUpdate = 0;
   let dirty = true;
   let suspended = false;
-  let dark = root.getAttribute('data-theme') === 'dark';
-  let gradient;
+  let strokeColor;
 
   function staticMode() {
     return reducedMotion.matches || compactScreen.matches || !finePointer.matches;
@@ -38,100 +41,152 @@
   }
 
   function updatePalette() {
-    dark = root.getAttribute('data-theme') === 'dark';
-    const color = dark ? '151, 193, 212' : '77, 124, 153';
-    gradient = ctx.createLinearGradient(0, 0, width, 0);
-    gradient.addColorStop(0, 'rgba(' + color + ', 0)');
-    gradient.addColorStop(0.10, 'rgba(' + color + ', 0.34)');
-    gradient.addColorStop(0.54, 'rgba(' + color + ', 0.22)');
-    gradient.addColorStop(0.90, 'rgba(' + color + ', 0.40)');
-    gradient.addColorStop(1, 'rgba(' + color + ', 0.10)');
+    strokeColor = root.getAttribute('data-theme') === 'dark'
+      ? 'rgba(151, 193, 212, 0.38)' : 'rgba(77, 124, 153, 0.38)';
+  }
+
+  function sample(line) {
+    line.trailX[line.next] = line.x;
+    line.trailY[line.next] = line.y;
+    line.next = (line.next + 1) % line.trailLength;
+    line.count = Math.min(line.count + 1, line.trailLength);
+  }
+
+  function emit(line, prime) {
+    // Every lifetime begins at a fresh position and direction, never in lanes.
+    line.x = Math.random() * width;
+    line.y = Math.random() * height;
+    line.angle = Math.random() * Math.PI * 2;
+    line.speed = 42 + Math.random() * 32;
+    line.life = 5.5 + Math.random() * 3.5;
+    line.age = prime ? 1 + Math.random() * (line.life - 2) : -Math.random() * 0.65;
+    line.alpha = 0.65 + Math.random() * 0.35;
+    line.width = 0.7 + Math.random() * 0.4;
+    line.trailLength = 22 + Math.floor(Math.random() * (maxTrail - 21));
+    line.side = Math.random() < 0.5 ? -1 : 1;
+    line.steer = 0;
+    line.sampleTime = 0;
+    line.next = 0;
+    line.count = 0;
+    if (prime) {
+      // A few already-travelling lines avoid a blank first frame; subsequent
+      // emissions grow naturally from a point and fade out before respawning.
+      const x = line.x;
+      const y = line.y;
+      for (let i = line.trailLength - 1; i >= 0; i--) {
+        line.x = x - Math.cos(line.angle) * line.speed * sampleInterval * i;
+        line.y = y - Math.sin(line.angle) * line.speed * sampleInterval * i;
+        sample(line);
+      }
+      line.x = x;
+      line.y = y;
+    } else {
+      sample(line);
+    }
+  }
+
+  function createLines() {
+    const count = Math.min(maxLines, Math.max(14, Math.ceil(width * height / 44000)));
+    if (lines.length > count) lines.length = count;
+    for (let i = lines.length; i < count; i++) {
+      // Reused ring buffers bound memory throughout continuous emission.
+      const line = { trailX: new Float32Array(maxTrail), trailY: new Float32Array(maxTrail) };
+      emit(line, true);
+      lines.push(line);
+    }
   }
 
   function resize() {
+    const oldWidth = width;
+    const oldHeight = height;
     width = Math.max(1, window.innerWidth);
     height = Math.max(1, window.innerHeight);
-    // Bound both retina work and canvas memory, including very large monitors.
     const ratio = Math.min(window.devicePixelRatio || 1, 1.5,
       Math.sqrt(pixelBudget / (width * height)));
     canvas.width = Math.max(1, Math.floor(width * ratio));
     canvas.height = Math.max(1, Math.floor(height * ratio));
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    createPaths();
+    // Preserve the composition when mobile browser chrome changes height;
+    // a static fallback must not randomly reshuffle during touch scrolling.
+    if (width !== oldWidth || height !== oldHeight) {
+      const scaleX = width / oldWidth;
+      const scaleY = height / oldHeight;
+      lines.forEach(function (line) {
+        line.x *= scaleX;
+        line.y *= scaleY;
+        for (let i = 0; i < maxTrail; i++) {
+          line.trailX[i] *= scaleX;
+          line.trailY[i] *= scaleY;
+        }
+      });
+    }
+    createLines();
     updatePalette();
     dirty = true;
     sync();
   }
 
-  function createPaths() {
-    // Seeded, irregular walks: each one has its own direction and sharp turns.
-    // Keeping a stable seed avoids a distracting reshuffle when resizing.
-    let seed = 4147;
-    function random() {
-      seed = (seed * 1664525 + 1013904223) >>> 0;
-      return seed / 4294967296;
+  function advance(line, elapsed) {
+    line.age += elapsed;
+    if (line.age >= line.life || line.x < -150 || line.x > width + 150 ||
+        line.y < -150 || line.y > height + 150) {
+      emit(line, false);
+      return;
     }
-    const count = Math.min(34, Math.max(15, Math.ceil(width * height / 34000)));
-    const scale = Math.min(1.2, Math.max(0.65, width / 1200));
-    paths = [];
-    for (let i = 0; i < count; i++) {
-      let x = random() * width;
-      let y = random() * height;
-      let angle = random() * Math.PI * 2;
-      const points = [];
-      const corners = 3 + Math.floor(random() * 4);
-      for (let j = 0; j < corners; j++) {
-        points.push({ x: x, y: y, phase: random() * Math.PI * 2 });
-        // Alternate broad and tight bends rather than smooth or parallel lanes.
-        angle += (random() - 0.5) * Math.PI * 1.35;
-        const length = (65 + random() * 115) * scale;
-        let nextX = x + Math.cos(angle) * length;
-        let nextY = y + Math.sin(angle) * length;
-        if (nextX < -40 || nextX > width + 40) {
-          angle = Math.PI - angle;
-          nextX = x + Math.cos(angle) * length;
-        }
-        if (nextY < -40 || nextY > height + 40) {
-          angle = -angle;
-          nextY = y + Math.sin(angle) * length;
-        }
-        x = nextX;
-        y = nextY;
-      }
-      paths.push({ points: points, alpha: 0.46 + random() * 0.32, width: 0.65 + random() * 0.4 });
-    }
-  }
+    if (line.age < 0) return;
 
-  function pointAt(point) {
-    // Vertices drift slowly, while the segments between them stay straight.
-    let x = point.x + Math.sin(phase * 0.09 + point.phase) * 8;
-    let y = point.y + Math.cos(phase * 0.07 + point.phase) * 7;
+    let targetSteer = 0;
     if (pointer.strength > 0.001) {
-      const dx = x - pointer.x;
-      const dy = y - pointer.y;
-      const influence = Math.exp(-(dx * dx + dy * dy) / (150 * 150)) * pointer.strength;
-      x += (8 - dy * 0.055) * influence;
-      y += (dy * 0.20 + dx * 0.075) * influence;
+      const dx = line.x - pointer.x;
+      const dy = line.y - pointer.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance < pointerRadius) {
+        // A small local change of heading, not a drag or displacement of the
+        // whole trail. The path already drawn stays behind the moving tip.
+        const cross = Math.cos(line.angle) * dy - Math.sin(line.angle) * dx;
+        const side = Math.abs(cross) < 1 ? line.side : (cross < 0 ? -1 : 1);
+        const influence = 1 - distance / pointerRadius;
+        targetSteer = side * maxSteer * influence * influence * pointer.strength;
+      }
     }
-    return { x: x, y: y };
+    line.steer += (targetSteer - line.steer) * (1 - Math.exp(-elapsed * 4));
+    const heading = line.angle + line.steer;
+    line.x += Math.cos(heading) * line.speed * elapsed;
+    line.y += Math.sin(heading) * line.speed * elapsed;
+    line.sampleTime += elapsed;
+    if (line.sampleTime >= sampleInterval) {
+      line.sampleTime %= sampleInterval;
+      sample(line);
+    }
   }
 
   function draw() {
     ctx.clearRect(0, 0, width, height);
     ctx.lineCap = 'round';
-    ctx.lineJoin = 'miter';
-    ctx.miterLimit = 2;
-    ctx.strokeStyle = gradient;
-    paths.forEach(function (path) {
-      ctx.lineWidth = path.width;
-      ctx.globalAlpha = path.alpha;
-      ctx.beginPath();
-      path.points.forEach(function (vertex, index) {
-        const point = pointAt(vertex);
-        if (index === 0) ctx.moveTo(point.x, point.y);
-        else ctx.lineTo(point.x, point.y);
-      });
-      ctx.stroke();
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = strokeColor;
+    lines.forEach(function (line) {
+      if (line.age < 0) return;
+      const fade = Math.min(1, line.age / 0.8, (line.life - line.age) / 1.1);
+      const oldest = (line.next - line.count + line.trailLength) % line.trailLength;
+      ctx.lineWidth = line.width;
+      // Small groups taper the short tail without allocating gradients or
+      // new point arrays every frame. At most 32 lines and 36 points per line.
+      for (let start = 0; start < line.count; start += 4) {
+        const end = Math.min(start + 4, line.count);
+        const first = (oldest + start) % line.trailLength;
+        ctx.globalAlpha = line.alpha * fade * Math.pow((end + start + 1) / (2 * line.count + 1), 1.3);
+        ctx.beginPath();
+        ctx.moveTo(line.trailX[first], line.trailY[first]);
+        for (let i = start + 1; i <= end; i++) {
+          if (i === line.count) ctx.lineTo(line.x, line.y);
+          else {
+            const index = (oldest + i) % line.trailLength;
+            ctx.lineTo(line.trailX[index], line.trailY[index]);
+          }
+        }
+        ctx.stroke();
+      }
     });
     ctx.globalAlpha = 1;
     dirty = false;
@@ -141,14 +196,16 @@
     frameId = 0;
     if (hidden() || staticMode()) return;
     if (!lastFrame || now - lastFrame >= frameInterval) {
-      // No big time jump after a paused tab or a slow frame.
-      const elapsed = lastFrame ? Math.min((now - lastFrame) / 1000, 0.06) : 1 / 30;
-      lastFrame = now;
-      phase = (phase + elapsed) % cycle;
+      // Clamp slow frames and never catch up after a hidden tab.
+      const elapsed = lastUpdate ? Math.min((now - lastUpdate) / 1000, 0.06) : 1 / 30;
+      // Retain the fractional frame remainder on 60/120Hz displays.
+      lastFrame = lastFrame ? now - (now - lastFrame) % frameInterval : now;
+      lastUpdate = now;
       const follow = 1 - Math.exp(-elapsed * 7);
       pointer.x += (pointer.targetX - pointer.x) * follow;
       pointer.y += (pointer.targetY - pointer.y) * follow;
       pointer.strength += ((pointer.active ? 1 : 0) - pointer.strength) * (1 - Math.exp(-elapsed * 4));
+      lines.forEach(function (line) { advance(line, elapsed); });
       draw();
     }
     frameId = window.requestAnimationFrame(tick);
@@ -158,6 +215,7 @@
     if (frameId) window.cancelAnimationFrame(frameId);
     frameId = 0;
     lastFrame = 0;
+    lastUpdate = 0;
   }
 
   function sync() {
@@ -188,7 +246,7 @@
     }
     pointer.active = true;
   }, { passive: true });
-  document.documentElement.addEventListener('pointerleave', releasePointer, { passive: true });
+  root.addEventListener('pointerleave', releasePointer, { passive: true });
   window.addEventListener('pointercancel', releasePointer, { passive: true });
   window.addEventListener('blur', releasePointer);
   window.addEventListener('resize', resize, { passive: true });
@@ -214,4 +272,3 @@
   }
   resize();
 }());
-
