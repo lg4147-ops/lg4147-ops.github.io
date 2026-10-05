@@ -1,4 +1,4 @@
-/* Decorative streamlines only: no dependencies, requests, storage, or telemetry. */
+/* Decorative angular polylines only: no dependencies, requests, storage, or telemetry. */
 (function () {
   'use strict';
 
@@ -20,8 +20,7 @@
 
   let width = 1;
   let height = 1;
-  let lineCount = 16;
-  let segments = 60;
+  let paths = [];
   let phase = 0;
   let frameId = 0;
   let lastFrame = 0;
@@ -58,73 +57,82 @@
     canvas.width = Math.max(1, Math.floor(width * ratio));
     canvas.height = Math.max(1, Math.floor(height * ratio));
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    lineCount = Math.min(26, Math.max(12, Math.ceil(height / 42)));
-    segments = Math.min(110, Math.max(40, Math.ceil(width / 20)));
+    createPaths();
     updatePalette();
     dirty = true;
     sync();
   }
 
-  function pointAt(x, lane) {
-    const spacing = (height + 260) / (lineCount - 1);
-    const origin = lane * spacing - 100;
-    const scale = Math.min(1, width / 1000);
-    // Shared long waves keep neighboring lines coherent, like a slow current.
-    let y = origin - (x / width - 0.5) * 115 * scale
-      + Math.sin(x / width * 5.0 + origin * 0.0016 - phase * 0.07) * 48 * scale
-      + Math.sin(x / width * 9.0 - origin * 0.0012 + phase * 0.11) * 15 * scale;
-    let px = x;
+  function createPaths() {
+    // Seeded, irregular walks: each one has its own direction and sharp turns.
+    // Keeping a stable seed avoids a distracting reshuffle when resizing.
+    let seed = 4147;
+    function random() {
+      seed = (seed * 1664525 + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    const count = Math.min(34, Math.max(15, Math.ceil(width * height / 34000)));
+    const scale = Math.min(1.2, Math.max(0.65, width / 1200));
+    paths = [];
+    for (let i = 0; i < count; i++) {
+      let x = random() * width;
+      let y = random() * height;
+      let angle = random() * Math.PI * 2;
+      const points = [];
+      const corners = 3 + Math.floor(random() * 4);
+      for (let j = 0; j < corners; j++) {
+        points.push({ x: x, y: y, phase: random() * Math.PI * 2 });
+        // Alternate broad and tight bends rather than smooth or parallel lanes.
+        angle += (random() - 0.5) * Math.PI * 1.35;
+        const length = (65 + random() * 115) * scale;
+        let nextX = x + Math.cos(angle) * length;
+        let nextY = y + Math.sin(angle) * length;
+        if (nextX < -40 || nextX > width + 40) {
+          angle = Math.PI - angle;
+          nextX = x + Math.cos(angle) * length;
+        }
+        if (nextY < -40 || nextY > height + 40) {
+          angle = -angle;
+          nextY = y + Math.sin(angle) * length;
+        }
+        x = nextX;
+        y = nextY;
+      }
+      paths.push({ points: points, alpha: 0.46 + random() * 0.32, width: 0.65 + random() * 0.4 });
+    }
+  }
+
+  function pointAt(point) {
+    // Vertices drift slowly, while the segments between them stay straight.
+    let x = point.x + Math.sin(phase * 0.09 + point.phase) * 8;
+    let y = point.y + Math.cos(phase * 0.07 + point.phase) * 7;
     if (pointer.strength > 0.001) {
       const dx = x - pointer.x;
       const dy = y - pointer.y;
       const influence = Math.exp(-(dx * dx + dy * dy) / (150 * 150)) * pointer.strength;
-      // A small, smooth eddy rather than a push or a trail. Displacement is bounded.
-      px += (8 - dy * 0.055) * influence;
+      x += (8 - dy * 0.055) * influence;
       y += (dy * 0.20 + dx * 0.075) * influence;
     }
-    return { x: px, y: y };
+    return { x: x, y: y };
   }
 
   function draw() {
     ctx.clearRect(0, 0, width, height);
     ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
+    ctx.lineJoin = 'miter';
+    ctx.miterLimit = 2;
     ctx.strokeStyle = gradient;
-    const left = -35;
-    const span = width + 70;
-    for (let lane = 0; lane < lineCount; lane++) {
-      ctx.lineWidth = lane % 4 === 0 ? 1 : 0.7;
-      ctx.globalAlpha = lane % 4 === 0 ? 0.9 : 0.64;
+    paths.forEach(function (path) {
+      ctx.lineWidth = path.width;
+      ctx.globalAlpha = path.alpha;
       ctx.beginPath();
-      for (let step = 0; step <= segments; step++) {
-        const point = pointAt(left + span * step / segments, lane);
-        if (step === 0) ctx.moveTo(point.x, point.y);
+      path.points.forEach(function (vertex, index) {
+        const point = pointAt(vertex);
+        if (index === 0) ctx.moveTo(point.x, point.y);
         else ctx.lineTo(point.x, point.y);
-      }
+      });
       ctx.stroke();
-      // Short, soft accents moving along the same curves suggest fluid transport.
-      if (!staticMode() && lane % 3 === 0) {
-        const progress = (phase / cycle * 14 + lane * 0.173) % 1;
-        const center = left + span * progress;
-        const length = Math.min(105, width * 0.10);
-        const color = dark ? '171, 208, 222' : '90, 143, 170';
-        const accent = ctx.createLinearGradient(center - length, 0, center + length, 0);
-        accent.addColorStop(0, 'rgba(' + color + ', 0)');
-        accent.addColorStop(0.5, 'rgba(' + color + ', 0.30)');
-        accent.addColorStop(1, 'rgba(' + color + ', 0)');
-        ctx.strokeStyle = accent;
-        ctx.lineWidth = 1.25;
-        ctx.globalAlpha = 0.8;
-        ctx.beginPath();
-        for (let step = 0; step <= 12; step++) {
-          const point = pointAt(center - length + 2 * length * step / 12, lane);
-          if (step === 0) ctx.moveTo(point.x, point.y);
-          else ctx.lineTo(point.x, point.y);
-        }
-        ctx.stroke();
-        ctx.strokeStyle = gradient;
-      }
-    }
+    });
     ctx.globalAlpha = 1;
     dirty = false;
   }
@@ -206,3 +214,4 @@
   }
   resize();
 }());
+
