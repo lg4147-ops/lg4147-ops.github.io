@@ -15,6 +15,10 @@ My interests lie in computational applied mathematics, especially numerical meth
 
 I am currently working with Professor Charles Peskin on stochastic entrainment in biochemical and circadian oscillators, using stochastic simulation and numerical analysis.
 
+## Hobbies
+
+Outside mathematics, I enjoy listening to music, playing guitar, reading, and playing Hearthstone. In 2025, I competed in the Americas playoffs twice, but did not advance on either occasion.
+
 <p>
   <a class="btn" href="{{ '/research/' | relative_url }}">Research</a>
   <a class="btn" href="{{ '/teaching/' | relative_url }}">Teaching</a>

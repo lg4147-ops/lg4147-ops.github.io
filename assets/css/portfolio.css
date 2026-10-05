@@ -1,0 +1,75 @@
+/* Travel photos keep their original proportions at every screen size. */
+.portfolio-photos {
+  margin: 1.5rem 0 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--global-border-color);
+}
+
+.portfolio-photos__intro {
+  margin: 0 0 1rem;
+  color: var(--global-text-color);
+}
+
+.portfolio-photos__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.portfolio-photos .portfolio-photos__item {
+  display: block;
+  min-width: 0;
+  margin: 0;
+}
+
+.portfolio-photos__item > a {
+  display: block;
+  border-radius: 4px;
+}
+
+.portfolio-photos__item > a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.portfolio-photos .portfolio-photos__item img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: 4px;
+}
+
+.portfolio-photos .portfolio-photos__item figcaption {
+  margin: 0.65rem 0 0;
+  font-family: inherit;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--global-text-color);
+}
+
+.portfolio-photos__item figcaption span {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--global-text-color-light);
+  font-size: 0.75rem;
+}
+
+.portfolio-photos__hint {
+  margin: 1rem 0 0;
+  font-size: 0.75rem;
+  color: var(--global-text-color-light);
+}
+
+@media (max-width: 600px) {
+  .portfolio-photos__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  .portfolio-photos {
+    margin-top: 1rem;
+  }
+}

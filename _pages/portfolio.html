@@ -3,12 +3,51 @@ layout: archive
 title: "Portfolio"
 permalink: /portfolio/
 author_profile: true
+portfolio_gallery: true
 ---
 
 {% include base_path %}
 
+<section class="portfolio-photos" aria-label="Travel photography">
+  <p class="portfolio-photos__intro">Washington, D.C. &amp; New York City</p>
+  <div class="portfolio-photos__grid">
+    <figure class="portfolio-photos__item">
+      <a href="{{ base_path }}/images/portfolio/washington-dc.jpg" aria-label="View larger photo of Washington, D.C.">
+        <img src="{{ base_path }}/images/portfolio/washington-dc-small.jpg"
+             srcset="{{ base_path }}/images/portfolio/washington-dc-small.jpg 480w, {{ base_path }}/images/portfolio/washington-dc.jpg 1152w"
+             sizes="(max-width: 600px) 100vw, 33vw"
+             width="1152" height="1536"
+             alt="A tall stone monument against a blue sky in Washington, D.C."
+             decoding="async">
+      </a>
+      <figcaption>Washington, D.C.</figcaption>
+    </figure>
+    <figure class="portfolio-photos__item">
+      <a href="{{ base_path }}/images/portfolio/empire-state-building.jpg" aria-label="View larger photo from the Empire State Building">
+        <img src="{{ base_path }}/images/portfolio/empire-state-building-small.jpg"
+             srcset="{{ base_path }}/images/portfolio/empire-state-building-small.jpg 640w, {{ base_path }}/images/portfolio/empire-state-building.jpg 1536w"
+             sizes="(max-width: 600px) 100vw, 33vw"
+             width="1536" height="1152"
+             alt="A view across New York City from the Empire State Building"
+             loading="lazy" decoding="async">
+      </a>
+      <figcaption>From the Empire State Building<span>New York City</span></figcaption>
+    </figure>
+    <figure class="portfolio-photos__item">
+      <a href="{{ base_path }}/images/portfolio/world-trade-center.jpg" aria-label="View larger photo of the World Trade Center area">
+        <img src="{{ base_path }}/images/portfolio/world-trade-center-small.jpg"
+             srcset="{{ base_path }}/images/portfolio/world-trade-center-small.jpg 480w, {{ base_path }}/images/portfolio/world-trade-center.jpg 1152w"
+             sizes="(max-width: 600px) 100vw, 33vw"
+             width="1152" height="1536"
+             alt="A rainy street in the World Trade Center area of New York City"
+             loading="lazy" decoding="async">
+      </a>
+      <figcaption>World Trade Center<span>New York City</span></figcaption>
+    </figure>
+  </div>
+  <p class="portfolio-photos__hint">Select a photo to view it larger.</p>
+</section>
 
 {% for post in site.portfolio %}
   {% include archive-single.html %}
 {% endfor %}
-
