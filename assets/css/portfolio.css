@@ -53,14 +53,16 @@
 .portfolio-photos__item figcaption span {
   display: block;
   margin-top: 0.15rem;
-  color: var(--global-text-color-light);
+  color: var(--global-text-color);
+  opacity: 0.8;
   font-size: 0.75rem;
 }
 
 .portfolio-photos__hint {
   margin: 1rem 0 0;
   font-size: 0.75rem;
-  color: var(--global-text-color-light);
+  color: var(--global-text-color);
+  opacity: 0.8;
 }
 
 @media (max-width: 600px) {
