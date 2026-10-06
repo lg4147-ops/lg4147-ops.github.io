@@ -12,7 +12,7 @@ MATH-GA 2830-004 · Fall 2025 · Instructor: Yanjun Han
 
 The course develops entropy, divergence, and mutual information as tools for statistics and learning. Applications include statistical lower bounds and questions in estimation, prediction, and sampling.
 
-[Official course description](https://math.nyu.edu/dynamic/courses/graduate-course-descriptions/as/fall-2025/)
+[Course Website](https://yanjunhan2021.github.io/courses/info_theory/index.html)
 
 ## Coursework
 
