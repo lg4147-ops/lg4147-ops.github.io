@@ -17,7 +17,9 @@ I am currently working with Professor Charles Peskin on how periodic light chang
 
 ## Hobbies
 
-Outside mathematics, I enjoy listening to music, playing guitar, reading, and playing Hearthstone. In 2025, I competed in the Americas playoffs twice, but did not advance on either occasion.
+Outside mathematics, I enjoy listening to music, playing guitar, reading, and playing Hearthstone. In 2026, I received invitations to the Hearthstone Masters Tour Spring and Summer Playoffs. See my [Hearthstone highlights]({{ '/hobbies/#hearthstone' | relative_url }}).
+
+I love cooking. It’s one of my main interests outside mathematics. Here are some [photos of dishes I have made]({{ '/hobbies/#cooking' | relative_url }}).
 
 View my [Photography]({{ '/portfolio/' | relative_url }}).
 

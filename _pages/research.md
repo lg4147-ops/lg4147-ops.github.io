@@ -17,7 +17,7 @@ We study how periodic light changes protein fluctuations in a stochastic circadi
 <figure>
   <a href="{{ '/research/circadian-oscillator/' | relative_url }}" aria-label="Read about the circadian oscillator project">
     <img src="{{ '/images/research/circadian-oscillator-model.png' | relative_url }}"
-         width="1346" height="756"
+         width="1600" height="908"
          alt="Negative-feedback circuit of a light-driven circadian oscillator: nuclear mRNA is exported to the cytoplasm and translated into protein without being consumed; cytoplasmic protein enters the nucleus and represses transcription. Light modulates transcription, and mRNA and protein degrade."
          decoding="async">
   </a>

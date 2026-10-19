@@ -18,7 +18,7 @@ The project follows the cellular oscillator model of [Wang and Peskin (2018)](ht
 <figure>
   <a href="{{ '/images/research/circadian-oscillator-model.png' | relative_url }}" aria-label="View the cellular oscillator schematic at full size">
     <img src="{{ '/images/research/circadian-oscillator-model.png' | relative_url }}"
-         width="1346" height="756"
+         width="1600" height="908"
          alt="Negative-feedback circuit of a light-driven circadian oscillator: nuclear mRNA is exported to the cytoplasm and translated into protein without being consumed; cytoplasmic protein enters the nucleus and represses transcription. Light modulates transcription, and mRNA and protein degrade."
          decoding="async">
   </a>

@@ -1,0 +1,91 @@
+/* These gallery styles are scoped to the Hobbies page. */
+.hobbies-section {
+  margin: 2rem 0 2.5rem;
+  scroll-margin-top: 1.5rem;
+}
+
+.hobbies-section > h2 {
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--global-border-color);
+}
+
+.hobbies-jump-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+}
+
+.hobbies-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+  margin: 1.25rem 0;
+}
+
+.hobbies-gallery--cooking {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.hobbies-gallery .hobbies-gallery__item {
+  display: block;
+  min-width: 0;
+  margin: 0;
+}
+
+.hobbies-gallery__item > a {
+  display: block;
+  border-radius: 4px;
+}
+
+.hobbies-gallery__item > a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.hobbies-gallery .hobbies-gallery__item img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: 4px;
+}
+
+.hobbies-gallery .hobbies-gallery__item figcaption {
+  margin: 0.65rem 0 0;
+  font-family: inherit;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--global-text-color);
+}
+
+.hobbies-gallery__item figcaption span {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.75rem;
+}
+
+.hobbies-gallery__hint {
+  font-size: 0.75rem;
+  color: var(--global-text-color);
+}
+
+@media (max-width: 800px) {
+  .hobbies-gallery--cooking {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .hobbies-gallery:not(.hobbies-gallery--cooking) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 360px) {
+  .hobbies-gallery--cooking {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
