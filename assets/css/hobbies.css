@@ -65,6 +65,18 @@
   display: block;
   margin-top: 0.15rem;
   font-size: 0.75rem;
+  color: var(--global-text-color);
+}
+
+.hobbies-gallery__item figcaption a,
+.hobbies-gallery__item figcaption a:hover,
+.hobbies-gallery__item figcaption a:focus-visible {
+  color: var(--global-text-color);
+}
+
+.hobbies-gallery__item figcaption a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }
 
 .hobbies-gallery__hint {
