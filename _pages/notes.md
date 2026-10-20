@@ -25,6 +25,8 @@ The large-scale circulation of the atmosphere, shaped by rotation, stratificatio
 
 Entropy, divergence, and mutual information as tools for statistics and learning.
 
+[Entropy and the Central Limit Theorem (CLT): presentation (PDF)]({{ '/files/coursework/information-theory-entropic-clt-slides.pdf' | relative_url }}), jointly prepared with Shujun Xiong.
+
 ## [Partial Differential Equations]({{ '/notes/pde/' | relative_url }})
 
 Analytical methods for elliptic, parabolic, and hyperbolic equations, including Sobolev spaces and energy estimates.

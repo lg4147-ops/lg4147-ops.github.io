@@ -16,4 +16,8 @@ The course develops entropy, divergence, and mutual information as tools for sta
 
 ## Coursework
 
-No coursework PDF is currently posted.
+### Entropy and the Central Limit Theorem (CLT)
+
+Course presentation by Liyan Gong and Shujun Xiong on the entropic central limit theorem, using relative entropy, Fisher information, and de Bruijn's identity.
+
+[View presentation (PDF)]({{ '/files/coursework/information-theory-entropic-clt-slides.pdf' | relative_url }})
