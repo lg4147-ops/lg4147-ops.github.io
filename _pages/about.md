@@ -11,7 +11,7 @@ I'm Liyan Gong, a master's student in Mathematics at the Courant Institute of Ma
 
 ## Research interests
 
-My interests lie in computational applied mathematics, especially numerical methods for partial differential equations, stochastic modeling, and mathematical biology.
+My research interests lie in dynamical systems and mathematical biology, particularly stochastic dynamics and biological rhythms.
 
 I am currently working with Professor Charles Peskin on how periodic light changes protein fluctuations in a stochastic circadian oscillator, bringing together mathematical theory and mathematical biology through analytical derivations and numerical analysis. [Read about the project]({{ '/research/circadian-oscillator/' | relative_url }}).
 
