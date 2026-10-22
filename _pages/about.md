@@ -22,12 +22,3 @@ Outside mathematics, I have a wide range of interests that are an important part
 I also enjoy playing **Hearthstone**. Possibly the best Hearthstone player in New York City right now. In 2026, I received invitations to the Hearthstone Masters Tour Spring and Summer Playoffs. See my [Hearthstone highlights]({{ '/hobbies/#hearthstone' | relative_url }}).
 
 Cooking is another passion of mine. You can find photos of some [dishes I have made]({{ '/hobbies/#cooking' | relative_url }}) here.
-
-<p>
-  <a class="btn" href="{{ '/research/' | relative_url }}">Research</a>
-  <a class="btn" href="{{ '/teaching/' | relative_url }}">Teaching</a>
-  <a class="btn" href="{{ '/notes/' | relative_url }}">Notes</a>
-</p>
-
-For more about my background, see my [CV]({{ '/cv/' | relative_url }}). I share personal notes and reflections in [Blog]({{ '/year-archive/' | relative_url }}).
-
