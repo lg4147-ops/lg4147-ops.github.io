@@ -15,13 +15,13 @@ My research interests lie in dynamical systems and mathematical biology, particu
 
 I am currently working with Professor Charles Peskin on how periodic light changes protein fluctuations in a stochastic circadian oscillator, bringing together mathematical theory and mathematical biology through analytical derivations and numerical analysis. [Read about the project]({{ '/research/circadian-oscillator/' | relative_url }}).
 
-## Hobbies
+## Beyond Mathematics
 
-Outside mathematics, I enjoy listening to music, playing guitar, reading, and playing Hearthstone. In 2026, I received invitations to the Hearthstone Masters Tour Spring and Summer Playoffs. See my [Hearthstone highlights]({{ '/hobbies/#hearthstone' | relative_url }}).
+Outside mathematics, I have a wide range of interests that are an important part of my life. I enjoy listening to music, playing guitar, reading, and photography. You can explore some of my [photographs]({{ '/portfolio/' | relative_url }}) here.
 
-I love cooking. It’s one of my main interests outside mathematics. Here are some [photos of dishes I have made]({{ '/hobbies/#cooking' | relative_url }}).
+I also enjoy playing **Hearthstone** and like to think I might be the best player in New York City. In 2026, I received invitations to the Hearthstone Masters Tour Spring and Summer Playoffs. See my [Hearthstone highlights]({{ '/hobbies/#hearthstone' | relative_url }}).
 
-View my [Photography]({{ '/portfolio/' | relative_url }}).
+**Cooking** is another passion of mine, and I take pride in what I make. I’m confident in both my cooking and my Hearthstone skills. You can find photos of some [dishes I have made]({{ '/hobbies/#cooking' | relative_url }}) here.
 
 <p>
   <a class="btn" href="{{ '/research/' | relative_url }}">Research</a>
