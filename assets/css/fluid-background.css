@@ -1,7 +1,7 @@
-/* A quiet, local-only angular line field behind the page. Content keeps its own colors. */
+/* Quiet, local-only falling sakura behind the page. Content keeps its own colors. */
 :root {
-  --flow-bg: #f5f8fb;
-  --flow-wash: rgba(215, 230, 239, 0.42);
+  --flow-bg: #fcf9fb;
+  --flow-wash: rgba(242, 210, 224, 0.32);
   --flow-header-veil: rgba(244, 244, 229, 0.72);
   --flow-header-text: #173347;
   --flow-header-border: rgba(112, 137, 156, 0.22);
@@ -11,7 +11,7 @@
 
 html[data-theme="dark"] {
   --flow-bg: var(--global-bg-color, #292f36);
-  --flow-wash: rgba(100, 149, 173, 0.08);
+  --flow-wash: rgba(163, 95, 133, 0.10);
   --flow-header-veil: rgba(13, 32, 46, 0.77);
   --flow-header-text: #f5f6eb;
   --flow-header-border: rgba(163, 184, 203, 0.2);
@@ -90,18 +90,18 @@ body {
   z-index: -1;
   pointer-events: none;
   user-select: none;
-  background: radial-gradient(ellipse at 95% 30%, var(--flow-wash), transparent 65%);
+  background: radial-gradient(ellipse at 95% 18%, var(--flow-wash), transparent 65%);
   /* Quiet under the reading column; more visible in the open margins. */
-  -webkit-mask-image: linear-gradient(to right, #000, rgba(0, 0, 0, 0.32) 20%, rgba(0, 0, 0, 0.24) 32%, rgba(0, 0, 0, 0.24) 72%, #000 96%);
-  mask-image: linear-gradient(to right, #000, rgba(0, 0, 0, 0.32) 20%, rgba(0, 0, 0, 0.24) 32%, rgba(0, 0, 0, 0.24) 72%, #000 96%);
+  -webkit-mask-image: linear-gradient(to right, #000, rgba(0, 0, 0, 0.4) 20%, rgba(0, 0, 0, 0.3) 32%, rgba(0, 0, 0, 0.3) 72%, #000 96%);
+  mask-image: linear-gradient(to right, #000, rgba(0, 0, 0, 0.4) 20%, rgba(0, 0, 0, 0.3) 32%, rgba(0, 0, 0, 0.3) 72%, #000 96%);
 }
 
 @media (max-width: 767px), (hover: none), (pointer: coarse) {
   .masthead { background-position: 42% 31%; }
   #fluid-canvas {
-    opacity: 0.65;
-    -webkit-mask-image: linear-gradient(to right, #000, rgba(0, 0, 0, 0.1) 15%, rgba(0, 0, 0, 0.1) 85%, #000);
-    mask-image: linear-gradient(to right, #000, rgba(0, 0, 0, 0.1) 15%, rgba(0, 0, 0, 0.1) 85%, #000);
+    opacity: 0.78;
+    -webkit-mask-image: linear-gradient(to right, #000, rgba(0, 0, 0, 0.2) 15%, rgba(0, 0, 0, 0.2) 85%, #000);
+    mask-image: linear-gradient(to right, #000, rgba(0, 0, 0, 0.2) 15%, rgba(0, 0, 0, 0.2) 85%, #000);
   }
 }
 
@@ -119,4 +119,5 @@ body {
     box-shadow: none;
   }
 }
+
 

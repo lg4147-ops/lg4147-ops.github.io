@@ -23,7 +23,7 @@ repository               : "lg4147-ops/lg4147-ops.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "liyan-gong-avatar-20261022.png"
   name             : "Liyan Gong"
   pronouns         : "he/him"  
   bio              : "Master’s Student in Applied Mathematics, NYU Courant Institute."
@@ -360,4 +360,5 @@ compress_html:
   clippings: all
   ignore:
     envs: development
+
 

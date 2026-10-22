@@ -1,4 +1,4 @@
-/* Decorative emitting lines only: no dependencies, requests, storage, or telemetry. */
+/* Local-only sakura petals: no dependencies, network requests, storage, or telemetry. */
 (function () {
   'use strict';
 
@@ -13,98 +13,57 @@
   const forcedColors = window.matchMedia('(forced-colors: active)');
   const printMode = window.matchMedia('print');
   const root = document.documentElement;
-  const frameInterval = 1000 / 30;
   const pixelBudget = 2800000;
-  const maxLines = 32;
-  const maxTrail = 36;
-  const sampleInterval = 0.05;
-  const pointerRadius = 150;
-  const maxSteer = 0.42;
-  const pointer = { x: 0, y: 0, targetX: 0, targetY: 0, strength: 0, active: false };
-  // Muted blue, teal, slate, violet and indigo keep the wave's quiet palette.
-  // Matching slots preserve each line's color family across theme changes.
+  const pointerRadius = 125;
+  const pointer = { x: 0, y: 0, strength: 0, active: false };
   const palettes = {
-    light: ['rgba(64, 122, 157, 0.42)', 'rgba(48, 134, 131, 0.40)',
-      'rgba(98, 125, 148, 0.40)', 'rgba(124, 111, 155, 0.38)',
-      'rgba(92, 125, 166, 0.40)'],
-    dark: ['rgba(139, 193, 222, 0.42)', 'rgba(130, 204, 189, 0.40)',
-      'rgba(169, 188, 206, 0.40)', 'rgba(188, 171, 217, 0.38)',
-      'rgba(154, 180, 224, 0.40)']
+    light: ['#e6a0b8', '#edb3c7', '#d98ca8', '#f0c2d1'],
+    dark: ['#e6a3bc', '#efb9cc', '#ce8eac', '#f1c7d7']
   };
 
   let width = 1;
   let height = 1;
-  let lines = [];
+  let petals = [];
+  let colors = palettes.light;
   let frameId = 0;
   let lastFrame = 0;
   let lastUpdate = 0;
   let dirty = true;
   let suspended = false;
-  let strokeColors;
-
-  function staticMode() {
-    return reducedMotion.matches || compactScreen.matches || !finePointer.matches;
-  }
 
   function hidden() {
     return suspended || document.hidden || forcedColors.matches || printMode.matches;
   }
 
   function updatePalette() {
-    strokeColors = root.getAttribute('data-theme') === 'dark' ? palettes.dark : palettes.light;
+    colors = root.getAttribute('data-theme') === 'dark' ? palettes.dark : palettes.light;
   }
 
-  function sample(line) {
-    line.trailX[line.next] = line.x;
-    line.trailY[line.next] = line.y;
-    line.next = (line.next + 1) % line.trailLength;
-    line.count = Math.min(line.count + 1, line.trailLength);
+  function resetPetal(petal, initial) {
+    petal.x = Math.random() * (width + 80) - 40;
+    petal.y = initial ? Math.random() * height : -25 - Math.random() * 60;
+    petal.size = 6 + Math.random() * 5;
+    petal.fall = 20 + Math.random() * 20;
+    petal.drift = -7 + Math.random() * 18;
+    petal.phase = Math.random() * Math.PI * 2;
+    petal.flutter = 0.65 + Math.random() * 0.75;
+    petal.angle = Math.random() * Math.PI * 2;
+    petal.spin = (Math.random() - 0.5) * 0.9;
+    petal.alpha = 0.48 + Math.random() * 0.28;
+    petal.color = Math.floor(Math.random() * palettes.light.length);
+    petal.vx = 0;
+    petal.vy = 0;
   }
 
-  function emit(line, prime) {
-    // Every lifetime begins at a fresh position and direction, never in lanes.
-    line.x = Math.random() * width;
-    line.y = Math.random() * height;
-    line.angle = Math.random() * Math.PI * 2;
-    line.speed = 42 + Math.random() * 32;
-    line.life = 5.5 + Math.random() * 3.5;
-    line.age = prime ? 1 + Math.random() * (line.life - 2) : -Math.random() * 0.65;
-    line.alpha = 0.65 + Math.random() * 0.35;
-    line.width = 1.7 + Math.random() * 0.8;
-    line.trailLength = 22 + Math.floor(Math.random() * (maxTrail - 21));
-    line.side = Math.random() < 0.5 ? -1 : 1;
-    // Pick a new color only after fading out, then fade it in with the next
-    // emission. No per-frame color changes or flashing; static modes stay still.
-    line.colorIndex = Math.floor(Math.random() * palettes.light.length);
-    line.steer = 0;
-    line.sampleTime = 0;
-    line.next = 0;
-    line.count = 0;
-    if (prime) {
-      // A few already-travelling lines avoid a blank first frame; subsequent
-      // emissions grow naturally from a point and fade out before respawning.
-      const x = line.x;
-      const y = line.y;
-      for (let i = line.trailLength - 1; i >= 0; i--) {
-        line.x = x - Math.cos(line.angle) * line.speed * sampleInterval * i;
-        line.y = y - Math.sin(line.angle) * line.speed * sampleInterval * i;
-        sample(line);
-      }
-      line.x = x;
-      line.y = y;
-    } else {
-      sample(line);
-    }
-  }
-
-  function createLines() {
-    const count = Math.min(maxLines, Math.max(14, Math.ceil(width * height / 44000)));
-    if (lines.length > count) lines.length = count;
-    for (let i = lines.length; i < count; i++) {
-      // Reused ring buffers bound memory throughout continuous emission.
-      const line = { trailX: new Float32Array(maxTrail), trailY: new Float32Array(maxTrail) };
-      emit(line, true);
-      lines.push(line);
+  function sizePool() {
+    // Fewer petals on phones, with a hard bound for large/high-DPI displays.
+    const maximum = compactScreen.matches ? 24 : 64;
+    const count = Math.min(maximum, Math.max(14, Math.round(width * height / 26000)));
+    if (petals.length > count) petals.length = count;
+    while (petals.length < count) {
+      const petal = {};
+      resetPetal(petal, true);
+      petals.push(petal);
     }
   }
 
@@ -113,111 +72,99 @@
     const oldHeight = height;
     width = Math.max(1, window.innerWidth);
     height = Math.max(1, window.innerHeight);
-    const ratio = Math.min(window.devicePixelRatio || 1, 1.5,
+    const ratio = Math.min(window.devicePixelRatio || 1, 1.75,
       Math.sqrt(pixelBudget / (width * height)));
     canvas.width = Math.max(1, Math.floor(width * ratio));
     canvas.height = Math.max(1, Math.floor(height * ratio));
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    // Preserve the composition when mobile browser chrome changes height;
-    // a static fallback must not randomly reshuffle during touch scrolling.
-    if (width !== oldWidth || height !== oldHeight) {
-      const scaleX = width / oldWidth;
-      const scaleY = height / oldHeight;
-      lines.forEach(function (line) {
-        line.x *= scaleX;
-        line.y *= scaleY;
-        for (let i = 0; i < maxTrail; i++) {
-          line.trailX[i] *= scaleX;
-          line.trailY[i] *= scaleY;
-        }
-      });
-    }
-    createLines();
+    // Preserve positions rather than reshuffling on mobile browser-chrome changes.
+    petals.forEach(function (petal) {
+      petal.x *= width / oldWidth;
+      petal.y *= height / oldHeight;
+    });
+    sizePool();
     updatePalette();
     dirty = true;
     sync();
   }
 
-  function advance(line, elapsed) {
-    line.age += elapsed;
-    if (line.age >= line.life || line.x < -150 || line.x > width + 150 ||
-        line.y < -150 || line.y > height + 150) {
-      emit(line, false);
-      return;
-    }
-    if (line.age < 0) return;
+  function advance(petal, elapsed) {
+    petal.phase += petal.flutter * elapsed;
+    const damping = Math.exp(-1.8 * elapsed);
+    petal.vx *= damping;
+    petal.vy *= damping;
 
-    let targetSteer = 0;
     if (pointer.strength > 0.001) {
-      const dx = line.x - pointer.x;
-      const dy = line.y - pointer.y;
+      const dx = petal.x - pointer.x;
+      const dy = petal.y - pointer.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
       if (distance < pointerRadius) {
-        // A small local change of heading, not a drag or displacement of the
-        // whole trail. The path already drawn stays behind the moving tip.
-        const cross = Math.cos(line.angle) * dy - Math.sin(line.angle) * dx;
-        const side = Math.abs(cross) < 1 ? line.side : (cross < 0 ? -1 : 1);
         const influence = 1 - distance / pointerRadius;
-        targetSteer = side * maxSteer * influence * influence * pointer.strength;
+        const force = 260 * influence * influence * pointer.strength;
+        // A tiny breeze moves nearby petals away and gives them a gentle swirl.
+        // The fallback direction keeps an exact pointer/petal overlap finite.
+        const nx = distance > 0.1 ? dx / distance : Math.cos(petal.phase);
+        const ny = distance > 0.1 ? dy / distance : Math.sin(petal.phase);
+        petal.vx += (nx * force - ny * force * 0.22) * elapsed;
+        petal.vy += (ny * force + nx * force * 0.22) * elapsed;
       }
     }
-    line.steer += (targetSteer - line.steer) * (1 - Math.exp(-elapsed * 4));
-    const heading = line.angle + line.steer;
-    line.x += Math.cos(heading) * line.speed * elapsed;
-    line.y += Math.sin(heading) * line.speed * elapsed;
-    line.sampleTime += elapsed;
-    if (line.sampleTime >= sampleInterval) {
-      line.sampleTime %= sampleInterval;
-      sample(line);
-    }
+
+    petal.x += (petal.drift + Math.sin(petal.phase) * 13 + petal.vx) * elapsed;
+    petal.y += (petal.fall + Math.cos(petal.phase * 0.7) * 4 + petal.vy) * elapsed;
+    petal.angle += (petal.spin + petal.vx * 0.006) * elapsed;
+
+    if (petal.y > height + 30) resetPetal(petal, false);
+    // Horizontal wrap avoids abrupt changes to a petal's fall or color.
+    if (petal.x > width + 40) petal.x = -40;
+    else if (petal.x < -40) petal.x = width + 40;
+  }
+
+  function drawPetal(petal) {
+    const scale = petal.size * (compactScreen.matches ? 0.82 : 1);
+    ctx.save();
+    ctx.translate(petal.x, petal.y);
+    ctx.rotate(petal.angle);
+    // Slow tumbling reveals the petal's edge without flashing or disappearing.
+    ctx.scale(scale * (0.58 + Math.sin(petal.phase) * 0.27), scale);
+    ctx.globalAlpha = petal.alpha;
+    ctx.fillStyle = colors[petal.color];
+    ctx.beginPath();
+    ctx.moveTo(0, 0.92);
+    ctx.bezierCurveTo(-0.28, 0.62, -0.88, 0.08, -0.66, -0.52);
+    ctx.bezierCurveTo(-0.53, -0.94, -0.17, -0.99, 0, -0.64);
+    // The shallow cleft at the rounded tip is characteristic of sakura petals.
+    ctx.bezierCurveTo(0.20, -0.96, 0.57, -0.88, 0.68, -0.48);
+    ctx.bezierCurveTo(0.88, 0.07, 0.30, 0.65, 0, 0.92);
+    ctx.closePath();
+    ctx.fill();
+    ctx.globalAlpha = petal.alpha * 0.4;
+    ctx.strokeStyle = '#fff7fb';
+    ctx.lineWidth = 0.065;
+    ctx.beginPath();
+    ctx.moveTo(0, 0.68);
+    ctx.quadraticCurveTo(-0.13, 0.05, 0, -0.45);
+    ctx.stroke();
+    ctx.restore();
   }
 
   function draw() {
     ctx.clearRect(0, 0, width, height);
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    lines.forEach(function (line) {
-      if (line.age < 0) return;
-      const fade = Math.min(1, line.age / 0.8, (line.life - line.age) / 1.1);
-      const oldest = (line.next - line.count + line.trailLength) % line.trailLength;
-      ctx.lineWidth = line.width;
-      ctx.strokeStyle = strokeColors[line.colorIndex];
-      // Small groups taper the short tail without allocating gradients or
-      // new point arrays every frame. At most 32 lines and 36 points per line.
-      for (let start = 0; start < line.count; start += 4) {
-        const end = Math.min(start + 4, line.count);
-        const first = (oldest + start) % line.trailLength;
-        ctx.globalAlpha = line.alpha * fade * Math.pow((end + start + 1) / (2 * line.count + 1), 1.3);
-        ctx.beginPath();
-        ctx.moveTo(line.trailX[first], line.trailY[first]);
-        for (let i = start + 1; i <= end; i++) {
-          if (i === line.count) ctx.lineTo(line.x, line.y);
-          else {
-            const index = (oldest + i) % line.trailLength;
-            ctx.lineTo(line.trailX[index], line.trailY[index]);
-          }
-        }
-        ctx.stroke();
-      }
-    });
-    ctx.globalAlpha = 1;
+    petals.forEach(drawPetal);
     dirty = false;
   }
 
   function tick(now) {
     frameId = 0;
-    if (hidden() || staticMode()) return;
-    if (!lastFrame || now - lastFrame >= frameInterval) {
-      // Clamp slow frames and never catch up after a hidden tab.
+    if (hidden() || reducedMotion.matches) return;
+    const interval = 1000 / (compactScreen.matches ? 20 : 30);
+    if (!lastFrame || now - lastFrame >= interval) {
+      // Never catch up elapsed time after a hidden tab or a slow frame.
       const elapsed = lastUpdate ? Math.min((now - lastUpdate) / 1000, 0.06) : 1 / 30;
-      // Retain the fractional frame remainder on 60/120Hz displays.
-      lastFrame = lastFrame ? now - (now - lastFrame) % frameInterval : now;
+      lastFrame = lastFrame ? now - (now - lastFrame) % interval : now;
       lastUpdate = now;
-      const follow = 1 - Math.exp(-elapsed * 7);
-      pointer.x += (pointer.targetX - pointer.x) * follow;
-      pointer.y += (pointer.targetY - pointer.y) * follow;
-      pointer.strength += ((pointer.active ? 1 : 0) - pointer.strength) * (1 - Math.exp(-elapsed * 4));
-      lines.forEach(function (line) { advance(line, elapsed); });
+      pointer.strength += ((pointer.active ? 1 : 0) - pointer.strength) * (1 - Math.exp(-elapsed * 6));
+      petals.forEach(function (petal) { advance(petal, elapsed); });
       draw();
     }
     frameId = window.requestAnimationFrame(tick);
@@ -230,14 +177,16 @@
     lastUpdate = 0;
   }
 
+  function releasePointer() { pointer.active = false; }
+
   function sync() {
     if (hidden()) {
       stop();
       return;
     }
-    if (staticMode()) {
+    if (reducedMotion.matches) {
       stop();
-      pointer.active = false;
+      releasePointer();
       pointer.strength = 0;
       if (dirty) draw();
     } else if (!frameId) {
@@ -245,17 +194,11 @@
     }
   }
 
-  function releasePointer() { pointer.active = false; }
-
-  // Observe the page, never intercept its links, selection, or touch scrolling.
+  // Listen passively on the window: the canvas never blocks links or scrolling.
   window.addEventListener('pointermove', function (event) {
-    if (staticMode() || hidden() || event.pointerType === 'touch') return;
-    pointer.targetX = event.clientX;
-    pointer.targetY = event.clientY;
-    if (!pointer.active) {
-      pointer.x = event.clientX;
-      pointer.y = event.clientY;
-    }
+    if (reducedMotion.matches || hidden() || !finePointer.matches || event.pointerType === 'touch') return;
+    pointer.x = event.clientX;
+    pointer.y = event.clientY;
     pointer.active = true;
   }, { passive: true });
   root.addEventListener('pointerleave', releasePointer, { passive: true });
@@ -267,11 +210,16 @@
     pointer.strength = 0;
     sync();
   });
-  window.addEventListener('pagehide', function () { suspended = true; stop(); });
+  window.addEventListener('pagehide', function () {
+    suspended = true;
+    releasePointer();
+    pointer.strength = 0;
+    stop();
+  });
   window.addEventListener('pageshow', function () { suspended = false; dirty = true; sync(); });
 
   [reducedMotion, compactScreen, finePointer, forcedColors, printMode].forEach(function (query) {
-    const changed = function () { dirty = true; sync(); };
+    const changed = function () { releasePointer(); pointer.strength = 0; resize(); };
     if (query.addEventListener) query.addEventListener('change', changed);
     else if (query.addListener) query.addListener(changed);
   });
