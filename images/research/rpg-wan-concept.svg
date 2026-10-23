@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="840" viewBox="0 0 1200 840" fill="#203344" role="img" aria-labelledby="title desc">
+  <title id="title">Adapting RPG-inspired control to WAN</title>
+  <desc id="desc">Conceptual text-to-video project overview. A solid path connects a text description to a WAN prototype with attention adaptation and to generated videos. The team reported attention modifications and prototype video generation. Dashed paths show proposed RPG-inspired regional planning with sub-prompts and spatial layout, and exploratory LoRA integration for identity and motion control. These do not represent a validated end-to-end system. RPG means Recaption, Plan and Generate, an LLM-guided regional image-generation framework. LoRA means Low-Rank Adaptation, parameter-efficient fine-tuning through low-rank weight updates. WAN names Tongyi Wanxiang, Alibaba’s video generation model family, rather than an acronym.</desc>
+  <defs>
+    <marker id="solid-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 1 1 L 9 5 L 1 9" fill="none" stroke="#2C756C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="dashed-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 1 1 L 9 5 L 1 9" fill="none" stroke="#AA7A32" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      text { font-family: 'DejaVu Sans', Arial, sans-serif; }
+      .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.6px; fill: #2C756C; }
+      .label { font-size: 10px; font-weight: 700; letter-spacing: 1.15px; }
+      .body { font-size: 14px; fill: #5B6B77; }
+      .heading { font-size: 22px; font-weight: 600; }
+      .research { stroke: #AA7A32; stroke-width: 1.8; stroke-dasharray: 7 6; fill: #FFFCF6; }
+      .research-path { fill: none; stroke: #AA7A32; stroke-width: 1.8; stroke-dasharray: 6 5; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#dashed-arrow); }
+      .implementation-path { fill: none; stroke: #2C756C; stroke-width: 2.4; stroke-linecap: round; marker-end: url(#solid-arrow); }
+    </style>
+  </defs>
+
+  <rect width="1200" height="840" fill="#FFFFFF"/>
+  <text x="56" y="42" class="eyebrow">TEXT-TO-VIDEO GENERATION</text>
+  <text x="56" y="79" font-size="31" font-weight="600">Adapting RPG-inspired control to WAN</text>
+  <text x="56" y="109" font-size="16" fill="#5B6B77">Reported prototype work and exploratory directions</text>
+
+  <!-- Dashed research path: not a verified end-to-end implementation. -->
+  <path class="research-path" d="M 286 321 V 195 H 410"/>
+  <rect x="410" y="143" width="340" height="105" rx="12" class="research"/>
+  <text x="432" y="169" class="label" style="fill:#9C702C">EXPLORATORY DIRECTIONS</text>
+  <text x="432" y="197" class="heading" style="font-size:21px">RPG-inspired planning</text>
+  <text x="432" y="225" class="body">Sub-prompts + spatial layout</text>
+  <path class="research-path" d="M 580 248 V 321"/>
+  <text x="598" y="279" font-size="12" fill="#8A6F44">Proposed regional /</text>
+  <text x="598" y="296" font-size="12" fill="#8A6F44">multi-subject control</text>
+
+  <!-- Solid implementation path: attention changes and generation reported. -->
+  <text x="56" y="294" class="label" style="fill:#2C756C">REPORTED PROTOTYPE</text>
+  <rect x="56" y="321" width="250" height="120" rx="12" fill="#FAFBFC" stroke="#B8C5CC" stroke-width="1.5"/>
+  <text x="78" y="348" class="label" style="fill:#647781">INPUT</text>
+  <text x="78" y="381" class="heading">Text description</text>
+  <text x="78" y="408" class="body">Subjects, actions and scene</text>
+
+  <path class="implementation-path" d="M 306 381 H 410"/>
+  <rect x="410" y="321" width="340" height="120" rx="12" fill="#F0F7F5" stroke="#2C756C" stroke-width="2"/>
+  <text x="432" y="348" class="label" style="fill:#2C756C">IMPLEMENTATION MILESTONE</text>
+  <text x="432" y="381" class="heading">WAN prototype</text>
+  <text x="432" y="408" class="body">Attention adaptation</text>
+
+  <path class="implementation-path" d="M 750 381 H 854"/>
+  <rect x="854" y="321" width="290" height="120" rx="12" fill="#FAFBFC" stroke="#B8C5CC" stroke-width="1.5"/>
+  <text x="876" y="348" class="label" style="fill:#647781">REPORTED OUTPUT</text>
+  <text x="876" y="381" class="heading">Generated videos</text>
+  <text x="876" y="408" class="body">Prototype generation</text>
+
+  <!-- LoRA is an exploratory branch, not a completed integration claim. -->
+  <path class="research-path" d="M 580 497 V 441"/>
+  <text x="598" y="474" font-size="12" fill="#8A6F44">Explored integration</text>
+  <rect x="410" y="497" width="340" height="95" rx="12" class="research"/>
+  <text x="432" y="521" class="label" style="fill:#9C702C">EXPLORATORY</text>
+  <text x="432" y="548" class="heading" style="font-size:21px">LoRA integration</text>
+  <text x="432" y="574" class="body">Identity and motion control</text>
+
+  <line x1="56" y1="622" x2="1144" y2="622" stroke="#E3E8EB"/>
+  <line x1="56" y1="646" x2="98" y2="646" stroke="#2C756C" stroke-width="2.4" stroke-linecap="round"/>
+  <text x="111" y="651" font-size="13" fill="#5B6B77">Reported implementation</text>
+  <line x1="345" y1="646" x2="387" y2="646" stroke="#AA7A32" stroke-width="1.8" stroke-dasharray="6 5" stroke-linecap="round"/>
+  <text x="400" y="651" font-size="13" fill="#5B6B77">Explored or proposed</text>
+  <line x1="56" y1="674" x2="1144" y2="674" stroke="#E3E8EB"/>
+  <text x="56" y="700" class="label" style="fill:#647781">KEY TERMS</text>
+  <text x="56" y="727" font-size="13" font-weight="700">RPG</text>
+  <text x="116" y="727" font-size="13" fill="#5B6B77">Recaption, Plan and Generate: regional image generation guided by a multimodal large language model.</text>
+  <text x="56" y="754" font-size="13" font-weight="700">LoRA</text>
+  <text x="116" y="754" font-size="13" fill="#5B6B77">Low-Rank Adaptation: efficient fine-tuning with frozen base weights and trainable low-rank updates.</text>
+  <text x="56" y="781" font-size="13" font-weight="700">WAN</text>
+  <text x="116" y="781" font-size="13" fill="#5B6B77">Tongyi Wanxiang: Alibaba video generation model family. WAN is a model name, not an acronym.</text>
+</svg>
