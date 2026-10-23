@@ -9,9 +9,7 @@ author_profile: true
 
 MATH-GA 2500-001 · Spring 2026 · Instructor: Vlad Vicol
 
-The course develops analytical tools for partial differential equations, including distributions, Sobolev spaces, harmonic functions and potential theory, and Fourier analysis. These methods support the study of elliptic equations, the heat and wave equations, and semilinear problems.
-
-[Official course description](https://math.nyu.edu/dynamic/courses/graduate-course-descriptions/as/spring-2026/)
+This core PhD-level course studies partial differential equations through Sobolev spaces and the theory of second-order elliptic equations. It also covers linear evolution equations, including second-order parabolic and hyperbolic equations, and first-order hyperbolic systems.
 
 ## Available excerpt from Homework 4
 
