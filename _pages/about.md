@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-I'm Liyan Gong, a master's student in Mathematics at the Courant Institute of Mathematical Sciences, New York University. I joined NYU in fall 2025 after completing my B.S. in Mathematics at Sun Yat-sen University.
+I'm Liyan Gong, a master's student in Mathematics at the Courant Institute of Mathematical Sciences, New York University. I joined NYU in fall 2025 after completing my B.S. in Mathematics and Applied Mathematics at Sun Yat-sen University.
 
 ## Research interests
 
