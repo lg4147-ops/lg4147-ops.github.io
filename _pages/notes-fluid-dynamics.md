@@ -9,7 +9,7 @@ author_profile: true
 
 MATH-GA 2702-001 · Fall 2025 · Instructor: Esteban Tabak
 
-The course develops the conservation laws and mathematical descriptions of fluid motion, from Eulerian and Lagrangian viewpoints to compressibility, shocks, vorticity, and circulation. Topics include the Euler, Navier–Stokes, and Stokes equations, conformal mapping, and boundary layers.
+This graduate course explores the mathematical and physical foundations of fluid dynamics through conservation laws and the Eulerian and Lagrangian descriptions of fluid motion. Topics include compressible and incompressible flow, ideal and viscous fluids, vorticity, waves, shocks, and boundary layers. The course emphasizes connections with partial differential equations, complex analysis, and geometry, as well as how the dominant physical mechanisms change across scales.
 
 ## Homework 9: Boundary Layers and Matched Asymptotics
 
