@@ -30,3 +30,11 @@ Entropy, divergence, and mutual information as tools for statistics and learning
 ## [Partial Differential Equations]({{ '/notes/pde/' | relative_url }})
 
 Analytical methods for elliptic, parabolic, and hyperbolic equations, including Sobolev spaces and energy estimates.
+
+## [Computational Electromagnetics]({{ '/notes/computational-electromagnetics/' | relative_url }})
+
+Maxwell's equations, electromagnetic wave propagation, integral equations, and fast numerical methods.
+
+## [Mechanics]({{ '/notes/mechanics/' | relative_url }})
+
+Lagrangian and Hamiltonian mechanics, variational principles, dispersive waves, and particle and field dynamics.
