@@ -19,8 +19,6 @@ Starting with a blackbody estimate of human radiative emission, this assignment 
 
 [Read complete Homework 1 · PDF · 7 pages]({{ '/files/coursework/atmospheric-dynamics-homework-1.pdf' | relative_url }}){: .btn .btn--primary }
 
-The PDF contains all four problems and their submitted solutions, with personal details removed. Numerical inputs and references to current values are those used in the original coursework.
-
 ## Group presentation
 
 Synoptic Scale Meteorology: Extratropical Storm Tracks
