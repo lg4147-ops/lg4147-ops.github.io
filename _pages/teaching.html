@@ -7,6 +7,47 @@ author_profile: true
 
 {% include base_path %}
 
-{% for post in site.teaching reversed %}
-  {% include archive-single.html %}
+<style>
+.teaching-semesters { display: table; width: 100%; table-layout: fixed; font-size: .9em; }
+.teaching-semesters th, .teaching-semesters td { padding: .65em .5em; vertical-align: top; overflow-wrap: anywhere; }
+.teaching-semesters .semester-label { width: 22%; }
+.teaching-semesters ul { margin: 0; padding: 0; list-style: none; }
+.teaching-semesters li + li { margin-top: .85em; }
+.teaching-semesters .teaching-title { font-size: 1em; font-weight: 600; }
+.teaching-semesters .teaching-detail, .teaching-semesters .teaching-excerpt { margin: .2em 0 0; font-size: .9em; line-height: 1.5; }
+.teaching-semesters .teaching-excerpt p { margin: 0; }
+@media (max-width: 480px) {
+  .teaching-semesters .semester-label { width: 27%; }
+  .teaching-semesters th, .teaching-semesters td { padding: .6em .35em; }
+}
+</style>
+
+<table class="teaching-semesters">
+  <thead>
+    <tr><th scope="col" class="semester-label">Semester</th><th scope="col">Teaching</th></tr>
+  </thead>
+  <tbody>
+{% assign teaching_posts = site.teaching | sort: 'date' %}
+{% assign previous_semester = '' %}
+{% for post in teaching_posts %}
+  {% assign year = post.date | date: '%Y' %}
+  {% assign month = post.date | date: '%m' | plus: 0 %}
+  {% if month < 7 %}{% assign term = 'Spring' %}{% else %}{% assign term = 'Fall' %}{% endif %}
+  {% capture semester %}{{ term }} {{ year }}{% endcapture %}
+  {% if semester != previous_semester %}
+    {% unless forloop.first %}</ul></td></tr>{% endunless %}
+    <tr>
+      <th scope="row" class="semester-label">{{ semester }}</th>
+      <td><ul>
+  {% endif %}
+  {% capture term_suffix %} ({{ semester }}){% endcapture %}
+        <li>
+          <a class="teaching-title" href="{{ post.url | relative_url }}">{{ post.title | remove: term_suffix }}</a>
+          <p class="teaching-detail">{{ post.teaching_summary }}</p>
+          <div class="teaching-excerpt">{{ post.excerpt | markdownify }}</div>
+        </li>
+  {% assign previous_semester = semester %}
+  {% if forloop.last %}</ul></td></tr>{% endif %}
 {% endfor %}
+  </tbody>
+</table>
