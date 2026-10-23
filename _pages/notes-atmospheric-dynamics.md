@@ -9,9 +9,9 @@ author_profile: true
 
 MATH-GA 3004-001 · Spring 2026 · Instructor: Edwin Gerber
 
-The course explores the large-scale circulation of the atmosphere and the roles of rotation, stratification, moisture, and heating. Idealized models, waves, and eddies connect the governing equations with atmospheric behavior.
+Building on geophysical fluid dynamics, this course examines how rotation, stratification, and moisture shape the atmosphere’s response to uneven heating. Topics range from tropical Hadley cells to the stratospheric polar night jet, with an emphasis on how waves and eddies drive the zonal-mean circulation. Numerical experiments on NYU’s high-performance computing system connect theory with atmospheric modeling and reproducible climate research.
 
-[Official course description](https://math.nyu.edu/dynamic/courses/graduate-course-descriptions/as/spring-2026/)
+[Official course description](https://edwinpgerber.github.io/teaching/2026-spring-atmospheric-dynamics)
 
 ## Homework 1: Radiation and Greenhouse Models
 
