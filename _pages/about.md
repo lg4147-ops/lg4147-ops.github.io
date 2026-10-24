@@ -15,10 +15,6 @@ My research interests lie in dynamical systems and mathematical biology, particu
 
 I am currently working with Professor Charles Peskin on how periodic light changes protein fluctuations in a stochastic circadian oscillator, bringing together mathematical theory and mathematical biology through analytical derivations and numerical analysis. [Read about the project]({{ '/research/circadian-oscillator/' | relative_url }}).
 
-## Beyond Mathematics
+## Interests
 
-Outside mathematics, I have a wide range of interests that are an important part of my life. I enjoy listening to music, playing guitar, reading, and photography. You can explore some of my [photographs]({{ '/portfolio/' | relative_url }}) here.
-
-I also enjoy playing Hearthstone. Possibly the best Hearthstone player in New York City right now. In 2026, I received invitations to the Hearthstone Masters Tour Spring and Summer Playoffs. See my [Hearthstone highlights]({{ '/hobbies/#hearthstone' | relative_url }}).
-
-Cooking is another passion of mine. You can find photos of some [dishes I have made]({{ '/hobbies/#cooking' | relative_url }}) here.
+Outside mathematics, I have a wide range of interests, including music, playing guitar, reading, photography, Hearthstone, and cooking. These are an important part of my life. You can find more on my [Hobbies page]({{ '/hobbies/' | relative_url }}).
