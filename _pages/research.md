@@ -18,12 +18,12 @@ My contributions include deriving and testing the variance and correlation decom
 
 <figure style="max-width:640px;margin:1em auto;">
   <a href="{{ '/research/circadian-oscillator/' | relative_url }}" aria-label="Read about the circadian oscillator project">
-    <img src="{{ '/images/research/circadian-oscillator-schematic.png' | relative_url }}"
-         width="1512" height="436" style="display:block;width:100%;max-width:640px;height:auto;margin:0 auto;"
+    <img src="{{ '/images/research/circadian-model-cover.png' | relative_url }}"
+         width="2048" height="1280" style="display:block;width:100%;max-width:640px;height:auto;margin:0 auto;"
          alt="Negative-feedback circuit of a light-driven circadian oscillator: nuclear mRNA is exported to the cytoplasm and translated into protein without being consumed; cytoplasmic protein enters the nucleus and represses transcription. Light modulates transcription, and mRNA and protein degrade."
          decoding="async">
   </a>
-  <figcaption>The cellular oscillator model follows <a href="https://doi.org/10.1103/PhysRevE.97.062416">Wang and Peskin (2018)</a>.</figcaption>
+  <figcaption>A light-driven molecular clock: periodic light modulates transcription, and nuclear protein provides negative feedback. Model adapted from <a href="https://doi.org/10.1103/PhysRevE.97.062416">Wang and Peskin (2018)</a>.</figcaption>
 </figure>
 
 [Read about the project]({{ '/research/circadian-oscillator/' | relative_url }}){: .btn .btn--primary }
