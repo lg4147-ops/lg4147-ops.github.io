@@ -7,10 +7,9 @@ author_profile: true
 
 I enjoy working with LaTeX and exploring how to typeset clear, polished homework and mathematical documents.
 
-<section class="selected-writing-preview" aria-labelledby="selected-writing-title">
-  <h2 id="selected-writing-title"><a href="{{ '/notes/selected-mathematical-writing/' | relative_url }}">Selected Mathematical Writing</a></h2>
-  <p>Selected work from my graduate coursework at NYU Courant, covering asymptotic analysis, partial differential equations, numerical optimization, and geophysical fluid dynamics.</p>
-</section>
+## [Selected Mathematical Writing]({{ '/notes/selected-mathematical-writing/' | relative_url }})
+
+Selected work from my graduate coursework at NYU Courant, covering asymptotic analysis, partial differential equations, numerical optimization, and geophysical fluid dynamics.
 
 ## Coursework by Semester
 
@@ -18,9 +17,6 @@ My coursework and expository notes are organized by semester below. Each course 
 
 
 <style>
-.selected-writing-preview { margin: 1.2em 0; font-size: .75em; line-height: 1.5; }
-.selected-writing-preview h2 { margin: 0; font-size: 1em; font-weight: normal; line-height: inherit; }
-.selected-writing-preview p { margin: .25em 0 0; font-size: .9em; }
 .semester-coursework { display: table; width: 100%; table-layout: fixed; }
 .semester-coursework th, .semester-coursework td { vertical-align: top; overflow-wrap: anywhere; }
 .semester-coursework .semester-label { width: 22%; }
