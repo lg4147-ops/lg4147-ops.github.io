@@ -62,7 +62,7 @@ Across this tested grid, stronger forcing increased the coherent fraction primar
          alt="The coherent variance fraction C24 increases with light modulation depth at all four tested volume scales."
          loading="lazy" decoding="async">
   </a>
-  <figcaption>Across the tested forcing range, the coherent response and coherent fraction increase, while the residual-variance response depends on volume. The upper panels show <i>S</i>/<i>s</i><sub>V</sub>² and <i>N</i>/<i>s</i><sub>V</sub>²; the lower panel shows <i>C</i><sub>24</sub> = <i>S</i>/(<i>S</i> + <i>N</i>). Figures from the October 2026 AML talk.</figcaption>
+  <figcaption>Across the tested forcing range, the coherent response and coherent fraction increase, while the residual-variance response depends on volume. The upper panels show <i>S</i>/<i>s</i><sub>V</sub>² and <i>N</i>/<i>s</i><sub>V</sub>²; the lower panel shows <i>C</i><sub>24</sub> = <i>S</i>/(<i>S</i> + <i>N</i>).</figcaption>
 </figure>
 
 ## Describing the geometry of the fluctuations
