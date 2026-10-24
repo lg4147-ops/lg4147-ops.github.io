@@ -28,8 +28,6 @@ My contributions include deriving and testing the variance and correlation decom
 
 [Read about the project]({{ '/research/circadian-oscillator/' | relative_url }}){: .btn .btn--primary }
 
-[Talk slides · AML Meeting, October 2026]({{ '/files/talks/aml-circadian-oscillator-2026-10-16.pdf' | relative_url }})
-
 ## Undergraduate thesis
 
 **Physics-informed neural networks for the semiclassical Schrödinger equation**
