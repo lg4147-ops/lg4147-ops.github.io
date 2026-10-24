@@ -34,6 +34,8 @@ My undergraduate thesis, supervised by Professor Lihui Chai at Sun Yat-sen Unive
 
 I also investigated how collocation-point sampling, the number of training points, and training duration affected PINN training. This project grew out of my studies in numerical analysis and numerical partial differential equations under Professor Chai and my participation in his weekly seminar.
 
+[Read thesis (PDF)]({{ '/files/research/Liyan_Gong_Undergraduate_Thesis_Public.pdf' | relative_url }})
+
 ## Text-to-Video Generation: Adapting RPG-Inspired Control to WAN
 
 **2025 · Collaborative research project**
