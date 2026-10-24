@@ -17,14 +17,14 @@ We study how periodic light changes protein fluctuations in a stochastic circadi
 
 The project follows the cellular oscillator model of [Wang and Peskin (2018)](https://doi.org/10.1103/PhysRevE.97.062416). It tracks nuclear and cytoplasmic mRNA and protein through transcription, transport, translation, and degradation. Nuclear protein represses transcription, while periodic light modulates the transcription rate.
 
-<figure style="max-width:640px;margin:1em auto;">
-  <a href="{{ '/images/research/circadian-oscillator-schematic.png' | relative_url }}" aria-label="View the cellular oscillator schematic at full size">
-    <img src="{{ '/images/research/circadian-oscillator-schematic.png' | relative_url }}"
-         width="1512" height="436" style="display:block;width:100%;max-width:640px;height:auto;margin:0 auto;"
-         alt="Negative-feedback circuit of a light-driven circadian oscillator: nuclear mRNA is exported to the cytoplasm and translated into protein without being consumed; cytoplasmic protein enters the nucleus and represses transcription. Light modulates transcription, and mRNA and protein degrade."
-         decoding="async">
+<figure class="circadian-diagram" style="width:100%;max-width:900px;margin:1.5em auto;">
+  <a href="{{ '/images/research/circadian-model.svg' | relative_url }}" aria-label="View this diagram at full size">
+    <img src="{{ '/images/research/circadian-model.svg' | relative_url }}"
+         width="1600" height="1000" style="display:block;width:100%;height:auto;"
+         alt="A six-reaction circadian oscillator: light modulates transcription, nuclear mRNA is exported, cytoplasmic mRNA produces protein without being consumed, and protein enters the nucleus to repress transcription. Cytoplasmic mRNA and nuclear protein undergo degradation."
+         loading="eager" decoding="async">
   </a>
-  <figcaption>The cellular oscillator model follows Wang and Peskin (2018). Select the schematic to view it at full size.</figcaption>
+  <figcaption>The cellular oscillator model follows <a href="https://doi.org/10.1103/PhysRevE.97.062416">Wang and Peskin (2018)</a>. Select the diagram to view it at full size.</figcaption>
 </figure>
 
 A stronger protein–light correlation could reflect a better-matched waveform, a larger repeatable response, or smaller fluctuations around that response. We separate these possibilities rather than relying on the correlation alone.
@@ -38,6 +38,16 @@ The periodic protein–light correlation then factors exactly into a waveform sh
 <p class="notice" aria-label="Periodic correlation equals the waveform shape factor times the square root of S divided by S plus N.">
   <strong>Periodic correlation = waveform shape factor × √[S / (S + N)]</strong>
 </p>
+
+<figure class="circadian-diagram" style="width:100%;max-width:900px;margin:1.5em auto;">
+  <a href="{{ '/images/research/circadian-research-question.svg' | relative_url }}" aria-label="View this diagram at full size">
+    <img src="{{ '/images/research/circadian-research-question.svg' | relative_url }}"
+         width="1600" height="1000" style="display:block;width:100%;height:auto;"
+         alt="Conceptual decomposition of protein abundance into a repeatable daily response and residual fluctuations. Total variance equals coherent variance S plus residual variance N; periodic correlation equals a waveform shape factor times the square root of S divided by S plus N."
+         loading="lazy" decoding="async">
+  </a>
+  <figcaption>Conditioning on light phase separates the repeatable response from residual variability and gives the exact correlation factorization above. Curves are schematic; select the diagram to view it at full size.</figcaption>
+</figure>
 
 We evaluated this decomposition in twenty Gillespie simulation cases: four volume scales and five light-modulation depths, with a reference dark free-running period of 23.2 hours and a 24-hour light cycle. Each case used sixteen independent 600-day trajectories, discarding the first 100 days.
 
@@ -81,8 +91,19 @@ At the fixed light phase t₀ = 6 h, the two-dimensional Floquet readout also re
 
 Separately, full-cycle comparisons of the four-dimensional periodic LNA with Gillespie simulations showed that agreement in periodic correlation could coexist with errors in the mean waveform and phase-resolved residual variance. The comparison includes the change from finite-copy repression to its macroscopic limit, so these discrepancies cannot be attributed solely to linearization. Periodic correlation alone also does not establish 1:1 frequency locking.
 
+<figure class="circadian-diagram" style="width:100%;max-width:900px;margin:1.5em auto;">
+  <a href="{{ '/images/research/circadian-key-findings.svg' | relative_url }}" aria-label="View this diagram at full size">
+    <img src="{{ '/images/research/circadian-key-findings.svg' | relative_url }}"
+         width="1600" height="1000" style="display:block;width:100%;height:auto;"
+         alt="Across the tested volume-forcing grid, stronger forcing increases the coherent response. The along-curve contribution accounts for 95.7–98.6 percent of residual protein variance; separately, mRNA-associated reactions contribute approximately 85 percent of residual protein variance predicted by periodic LNA."
+         loading="lazy" decoding="async">
+  </a>
+  <figcaption>Summary across the twenty tested volume–forcing cases. The geometric and LNA reaction-source percentages describe different decompositions; the curves are schematic. Select the diagram to view it at full size.</figcaption>
+</figure>
+
 ## Background reference
 
 G. Wang and C. S. Peskin, “Entrainment of a cellular circadian oscillator by light in the presence of molecular noise,” *Physical Review E* **97**, 062416 (2018). [doi:10.1103/PhysRevE.97.062416](https://doi.org/10.1103/PhysRevE.97.062416).
 
 [Back to Research]({{ '/research/' | relative_url }})
+
