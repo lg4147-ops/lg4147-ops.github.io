@@ -35,10 +35,6 @@ Conditioning total protein abundance on light phase gives a mean daily waveform 
 
 The periodic protein–light correlation then factors exactly into a waveform shape factor and the square root of the coherent variance fraction:
 
-<p class="notice" aria-label="Periodic correlation equals the waveform shape factor times the square root of S divided by S plus N.">
-  <strong>Periodic correlation = waveform shape factor × √[S / (S + N)]</strong>
-</p>
-
 <figure class="circadian-diagram" style="width:100%;max-width:900px;margin:1.5em auto;">
   <a href="{{ '/images/research/circadian-research-question.svg' | relative_url }}" aria-label="View this diagram at full size">
     <img src="{{ '/images/research/circadian-research-question.svg' | relative_url }}"
