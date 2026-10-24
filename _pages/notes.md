@@ -7,6 +7,12 @@ author_profile: true
 
 I enjoy working with LaTeX and exploring how to typeset clear, polished homework and mathematical documents.
 
+## [Selected Mathematical Writing]({{ '/notes/selected-mathematical-writing/' | relative_url }})
+
+Selected work from my graduate coursework at NYU Courant, covering asymptotic analysis, partial differential equations, numerical optimization, and geophysical fluid dynamics.
+
+## Coursework by Semester
+
 My coursework and expository notes are organized by semester below. Each course page introduces the subject and lists the available homework or clearly labeled excerpts.
 
 
