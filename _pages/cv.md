@@ -12,7 +12,7 @@ redirect_from:
 Education
 ======
 * M.S. in Math, New York University, 2025-2027 (expected)
-* B.S. in Math, Sun Yat-sen University, 2021-2025
+* B.S. in Mathematics and Applied Mathematics, Sun Yat-sen University, 2021-2025
 
 # Skills
 

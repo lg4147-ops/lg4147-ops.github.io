@@ -15,6 +15,6 @@ My research interests lie in dynamical systems and mathematical biology, particu
 
 I am currently working with Professor Charles Peskin on how periodic light changes protein fluctuations in a stochastic circadian oscillator, bringing together mathematical theory and mathematical biology through analytical derivations and numerical analysis. [Read about the project]({{ '/research/circadian-oscillator/' | relative_url }}).
 
-## Interests
+## Interests outside Mathematics
 
 Outside mathematics, I have a wide range of interests, including music, playing guitar, reading, photography, Hearthstone, and cooking. These are an important part of my life. You can find more on my [Hobbies page]({{ '/hobbies/' | relative_url }}).

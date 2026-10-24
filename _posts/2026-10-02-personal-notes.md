@@ -20,7 +20,7 @@ I’ve just started my journey at New York University — my first time living a
 
 Only after moving to New York did I fully realize just how amazing the food in Guangzhou actually is. I genuinely regret not eating even more while I had the chance.
 
-Anyway—back to the main story. I studied mathematics for four years at the School of Mathematics at Sun Yat-sen University. Looking back now, I’m surprised by how much math we actually learned. That experience really gave me a solid foundation, and I’m grateful for my undergraduate advisor, Prof. Chai Lihui, who guided me throughout those years.
+Anyway—back to the main story. I majored in Mathematics and Applied Mathematics during my four years at the School of Mathematics at Sun Yat-sen University. Looking back now, I’m surprised by how much math we actually learned. That experience really gave me a solid foundation, and I’m grateful for my undergraduate advisor, Prof. Chai Lihui, who guided me throughout those years.
 
 During that time, I also attended summer schools and seminars, and slowly figured out that I was truly drawn to applied mathematics. So, in the end, I came to the Courant Institute at NYU to chase that interest—and, in a sense, to chase a dream of my own.
 
