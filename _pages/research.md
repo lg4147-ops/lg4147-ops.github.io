@@ -30,7 +30,9 @@ We study how periodic light changes protein fluctuations in a stochastic circadi
 
 **Physics-informed neural networks for the semiclassical Schrödinger equation**
 
-Throughout my undergraduate studies, I studied numerical analysis and numerical partial differential equations under Professor Lihui Chai and attended his weekly seminar. This work culminated in my bachelor's thesis, “Physics-informed neural networks for the semiclassical Schrödinger equation.”
+My undergraduate thesis, supervised by Professor Lihui Chai at Sun Yat-sen University, explored physics-informed neural networks (PINNs) for the semiclassical Schrödinger equation. I combined PINNs with a WKB expansion to approximate the phase and amplitude of oscillatory solutions, and compared the reconstructed wave functions with a spectral solver.
+
+I also investigated how collocation-point sampling, the number of training points, and training duration affected PINN training. This project grew out of my studies in numerical analysis and numerical partial differential equations under Professor Chai and my participation in his weekly seminar.
 
 ## Text-to-Video Generation: Adapting RPG-Inspired Control to WAN
 

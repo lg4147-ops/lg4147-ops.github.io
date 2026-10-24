@@ -8,7 +8,7 @@ author_profile: true
 ### Coherent response and residual fluctuations in a light-modulated circadian oscillator
 
 AML Meeting · CIMS, NYU · October 16, 2026  
-Liyan Gong and Charles S. Peskin
+Speaker: Liyan Gong
 
 [View slides (PDF)]({{ '/files/talks/aml-circadian-oscillator-2026-10-16.pdf' | relative_url }})
 
