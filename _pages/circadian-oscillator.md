@@ -7,7 +7,9 @@ excerpt: "A research project with Professor Charles Peskin on the repeatable res
 ---
 
 **Research with Professor Charles Peskin**  
-**Status: Draft manuscript in preparation**
+**Status: Manuscript in preparation**
+
+[Talk slides · AML Meeting, October 2026]({{ '/files/talks/aml-circadian-oscillator-2026-10-16.pdf' | relative_url }})
 
 We study how periodic light changes protein fluctuations in a stochastic circadian oscillator. This project brings together applied mathematics and mathematical biology, using stochastic simulation, variance decompositions, and local dynamical analysis to understand the response to a daily light cycle.
 
@@ -15,10 +17,10 @@ We study how periodic light changes protein fluctuations in a stochastic circadi
 
 The project follows the cellular oscillator model of [Wang and Peskin (2018)](https://doi.org/10.1103/PhysRevE.97.062416). It tracks nuclear and cytoplasmic mRNA and protein through transcription, transport, translation, and degradation. Nuclear protein represses transcription, while periodic light modulates the transcription rate.
 
-<figure>
-  <a href="{{ '/images/research/circadian-oscillator-model.png' | relative_url }}" aria-label="View the cellular oscillator schematic at full size">
-    <img src="{{ '/images/research/circadian-oscillator-model.png' | relative_url }}"
-         width="1600" height="908"
+<figure style="max-width:640px;margin:1em auto;">
+  <a href="{{ '/images/research/circadian-oscillator-schematic.png' | relative_url }}" aria-label="View the cellular oscillator schematic at full size">
+    <img src="{{ '/images/research/circadian-oscillator-schematic.png' | relative_url }}"
+         width="1512" height="436" style="display:block;width:100%;max-width:640px;height:auto;margin:0 auto;"
          alt="Negative-feedback circuit of a light-driven circadian oscillator: nuclear mRNA is exported to the cytoplasm and translated into protein without being consumed; cytoplasmic protein enters the nucleus and represses transcription. Light modulates transcription, and mRNA and protein degrade."
          decoding="async">
   </a>
@@ -41,6 +43,22 @@ We evaluated this decomposition in twenty Gillespie simulation cases: four volum
 
 Across this tested grid, stronger forcing increased the coherent fraction primarily by enlarging the repeatable response. The shape factor changed little, while the residual variance responded differently at different volumes. Increased correlation therefore did not require a reduction in residual variability.
 
+<figure class="circadian-results">
+  <a href="{{ '/images/research/circadian-coherent-residual-variance.png' | relative_url }}" aria-label="View coherent and residual variance at full size">
+    <img src="{{ '/images/research/circadian-coherent-residual-variance.png' | relative_url }}"
+         width="2902" height="1330" style="display:block;width:100%;height:auto;"
+         alt="Gillespie results at four volume scales: coherent variance S divided by sV squared increases with forcing, while residual variance N divided by sV squared responds differently at different volumes."
+         loading="lazy" decoding="async">
+  </a>
+  <a href="{{ '/images/research/circadian-coherent-fraction.png' | relative_url }}" aria-label="View the coherent variance fraction at full size">
+    <img src="{{ '/images/research/circadian-coherent-fraction.png' | relative_url }}"
+         width="2132" height="1433" style="display:block;width:100%;max-width:520px;height:auto;margin:.8em auto;"
+         alt="The coherent variance fraction C24 increases with light modulation depth at all four tested volume scales."
+         loading="lazy" decoding="async">
+  </a>
+  <figcaption>Across the tested forcing range, the coherent response and coherent fraction increase, while the residual-variance response depends on volume. The upper panels show <i>S</i>/<i>s</i><sub>V</sub>² and <i>N</i>/<i>s</i><sub>V</sub>²; the lower panel shows <i>C</i><sub>24</sub> = <i>S</i>/(<i>S</i> + <i>N</i>). Figures from the October 2026 AML talk.</figcaption>
+</figure>
+
 ## Describing the geometry of the fluctuations
 
 We fitted closed curves to the simulated nuclear and cytoplasmic protein states, using cross-fitting so that each trajectory was evaluated against a curve fitted without it. The resulting decomposition separates protein variability associated with position along the curve, deviations from it, and their covariance.
@@ -59,7 +77,9 @@ Within the periodic linear-noise approximation (LNA) around a stable light-entra
 
 A calibrated two-dimensional Floquet map describes how local perturbations rotate and contract from one light cycle to the next while new reaction noise accumulates. Finite deterministic perturbation tests supported the local linearization.
 
-Full-cycle comparisons with Gillespie simulations also exposed its limits: close agreement in periodic correlation could coexist with errors in the mean waveform and phase-resolved residual variance. The comparison includes the change from finite-copy repression to its macroscopic limit, so these discrepancies cannot be attributed solely to linearization. Periodic correlation alone also does not establish 1:1 frequency locking.
+At the fixed light phase t₀ = 6 h, the two-dimensional Floquet readout also retained most total-protein residual variation in Gillespie tests.
+
+Separately, full-cycle comparisons of the four-dimensional periodic LNA with Gillespie simulations showed that agreement in periodic correlation could coexist with errors in the mean waveform and phase-resolved residual variance. The comparison includes the change from finite-copy repression to its macroscopic limit, so these discrepancies cannot be attributed solely to linearization. Periodic correlation alone also does not establish 1:1 frequency locking.
 
 ## Background reference
 

@@ -10,14 +10,16 @@ redirect_from:
 
 ## Coherent response and residual fluctuations in a light-driven circadian oscillator
 
-**Research with Professor Charles Peskin · Draft manuscript in preparation**
+**Manuscript in preparation**
 
-We study how periodic light changes protein fluctuations in a stochastic circadian oscillator. By separating the repeatable daily response from variability at the same light phase, we examine what drives protein–light correlation and how well numerical approximations preserve these fluctuations.
+Working with Professor Charles S. Peskin, I study how periodic light shapes the repeatable response and residual fluctuations of a stochastic circadian oscillator. We derived an exact factorization of protein–light correlation into a waveform shape factor and the square root of the coherent variance fraction. Across the tested parameter range, stronger forcing increased correlation mainly by strengthening the repeatable response, while residual variance responded differently at different volumes.
 
-<figure>
+My contributions include deriving and testing the variance and correlation decompositions, benchmarking stochastic simulation methods against Gillespie simulations, and implementing periodic linear-noise and local Floquet analyses.
+
+<figure style="max-width:640px;margin:1em auto;">
   <a href="{{ '/research/circadian-oscillator/' | relative_url }}" aria-label="Read about the circadian oscillator project">
-    <img src="{{ '/images/research/circadian-oscillator-model.png' | relative_url }}"
-         width="1600" height="908"
+    <img src="{{ '/images/research/circadian-oscillator-schematic.png' | relative_url }}"
+         width="1512" height="436" style="display:block;width:100%;max-width:640px;height:auto;margin:0 auto;"
          alt="Negative-feedback circuit of a light-driven circadian oscillator: nuclear mRNA is exported to the cytoplasm and translated into protein without being consumed; cytoplasmic protein enters the nucleus and represses transcription. Light modulates transcription, and mRNA and protein degrade."
          decoding="async">
   </a>
@@ -25,6 +27,8 @@ We study how periodic light changes protein fluctuations in a stochastic circadi
 </figure>
 
 [Read about the project]({{ '/research/circadian-oscillator/' | relative_url }}){: .btn .btn--primary }
+
+[Talk slides · AML Meeting, October 2026]({{ '/files/talks/aml-circadian-oscillator-2026-10-16.pdf' | relative_url }})
 
 ## Undergraduate thesis
 
