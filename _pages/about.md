@@ -17,4 +17,4 @@ I am currently working with Professor Charles Peskin on how periodic light chang
 
 ## Interests outside Mathematics
 
-Outside mathematics, I have a wide range of interests, including music, playing guitar, reading, photography, Hearthstone, and cooking. These are an important part of my life. You can find more on my [Hobbies page]({{ '/hobbies/' | relative_url }}).
+Outside mathematics, I have a wide range of interests, including music, playing guitar, reading, photography, [Hearthstone](https://hearthstone.blizzard.com/en-us), and cooking. These are an important part of my life. You can find more on my [Hobbies page]({{ '/hobbies/' | relative_url }}).
