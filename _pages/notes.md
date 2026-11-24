@@ -17,6 +17,8 @@ My coursework and expository notes are organized by semester below. Each course 
 
 
 <style>
+#selected-mathematical-writing a { color: inherit; text-decoration: none; }
+#selected-mathematical-writing a:hover, #selected-mathematical-writing a:focus-visible { text-decoration: underline; }
 .semester-coursework { display: table; width: 100%; table-layout: fixed; }
 .semester-coursework th, .semester-coursework td { vertical-align: top; overflow-wrap: anywhere; }
 .semester-coursework .semester-label { width: 22%; }

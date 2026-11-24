@@ -17,7 +17,7 @@ Building on geophysical fluid dynamics, this course examines how rotation, strat
 
 Starting with a blackbody estimate of human radiative emission, this assignment follows energy-balance ideas from a simple Voyager temperature model to leaky and multilayer greenhouse atmospheres. It includes Earth and Venus calculations and a back-of-the-envelope comparison of ocean and atmospheric mass.
 
-[Read complete Homework 1 · PDF · 7 pages]({{ '/files/coursework/atmospheric-dynamics-homework-1.pdf' | relative_url }}){: .btn .btn--primary }
+[Read]({{ '/files/coursework/atmospheric-dynamics-homework-1.pdf' | relative_url }}){: .btn .btn--primary }
 
 ## Group presentation
 
